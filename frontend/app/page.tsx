@@ -46,16 +46,16 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAFAF7]">
+    <div className="min-h-screen flex flex-col bg-wa-bg">
       <Navbar currentLang={currentLang} onLanguageChange={setCurrentLang} />
 
-      <main className="flex-1 max-w-4xl w-full mx-auto px-4 py-8 sm:py-12">
+      <main className="flex-1 max-w-4xl w-full mx-auto px-4 py-6 sm:py-10">
         {/* Headline & Description in one line / short paragraph */}
-        <section className="mb-8">
-          <h1 className="text-2xl sm:text-3xl font-serif font-bold text-[#1A1A1A] tracking-tight">
+        <section className="mb-6">
+          <h1 className="text-2xl sm:text-3xl font-serif font-bold text-wa-text tracking-tight">
             {strings.tagline}
           </h1>
-          <p className="mt-2 text-sm sm:text-base text-neutral-600 max-w-2xl leading-relaxed">
+          <p className="mt-2 text-sm sm:text-base text-wa-text-muted max-w-2xl leading-relaxed">
             {strings.subtitle}
           </p>
         </section>
@@ -83,7 +83,7 @@ export default function HomePage() {
         {resultData && <ResultView data={resultData} currentLang={currentLang} />}
       </main>
 
-      <footer className="border-t border-neutral-200 py-6 text-center text-xs text-neutral-500 bg-[#FAFAF7]">
+      <footer className="border-t border-[#d1d7db] py-4 text-center text-xs text-wa-text-muted bg-wa-bar">
         <div className="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-2">
           <span>Sach? — GenAI Multimodal Fact-Checking System</span>
           <span>Verified exclusively via official government portals & IFCN fact-checkers</span>

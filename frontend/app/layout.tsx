@@ -16,7 +16,7 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
       </head>
-      <body className="min-h-screen bg-[#FAFAF7] text-[#1A1A1A] antialiased selection:bg-neutral-200">
+      <body className="min-h-screen bg-wa-bg text-wa-text antialiased selection:bg-[#c5ecbd]">
         {children}
       </body>
     </html>

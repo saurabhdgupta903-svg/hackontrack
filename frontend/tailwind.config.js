@@ -8,12 +8,21 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: "#FAFAF7",
-        foreground: "#1A1A1A",
+        background: "var(--wa-bg)",
+        foreground: "var(--wa-text)",
+        "wa-bg": "#efeae2",
+        "wa-bubble": "#d9fdd3",
+        "wa-bubble-dark": "#c5ecbd",
+        "wa-accent": "#00a884",
+        "wa-accent-hover": "#008f6f",
+        "wa-text": "#111b21",
+        "wa-text-muted": "#8696a0",
+        "wa-bar": "#f0f2f5",
+        "wa-border": "#d1d7db",
         accent: {
-          DEFAULT: "#1B4D3E", // Deep forest green accent
-          hover: "#143A2F",
-          light: "#E8F0EC",
+          DEFAULT: "#00a884",
+          hover: "#008f6f",
+          light: "#d9fdd3",
         },
         verdict: {
           verified: "#15803D",
@@ -38,8 +47,13 @@ module.exports = {
         },
       },
       borderRadius: {
-        DEFAULT: "6px",
-        md: "8px",
+        DEFAULT: "12px",
+        md: "12px",
+        "wa-bubble": "4px 12px 12px 12px",
+        "wa-pill": "9999px",
+      },
+      boxShadow: {
+        "wa-bubble": "0 1px 0.5px rgba(0, 0, 0, 0.13)",
       },
     },
   },

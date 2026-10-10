@@ -81,7 +81,7 @@ export default function VerdictBadge({ verdict, size = "md", className = "" }: V
 
   return (
     <span
-      className={`inline-flex items-center rounded-md border font-sans select-none ${config.bgClass} ${config.borderClass} ${config.textClass} ${sizeClasses[size]} ${className}`}
+      className={`inline-flex items-center rounded-full border font-sans font-medium select-none ${config.bgClass} ${config.borderClass} ${config.textClass} ${sizeClasses[size]} ${className}`}
       title={config.description}
       role="status"
     >

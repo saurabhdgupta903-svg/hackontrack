@@ -3,16 +3,45 @@
 @tailwind utilities;
 
 :root {
-  --background: #FAFAF7;
-  --foreground: #1A1A1A;
+  --wa-bg: #efeae2;
+  --wa-bubble: #d9fdd3;
+  --wa-bubble-dark: #c5ecbd;
+  --wa-accent: #00a884;
+  --wa-accent-hover: #008f6f;
+  --wa-text: #111b21;
+  --wa-text-muted: #8696a0;
+  --wa-bar: #f0f2f5;
+  --wa-border: #d1d7db;
+
+  --background: var(--wa-bg);
+  --foreground: var(--wa-text);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="dark"] {
+    --wa-bg: #0b141a;
+    --wa-bubble: #005c4b;
+    --wa-bubble-dark: #202c33;
+    --wa-accent: #00a884;
+    --wa-accent-hover: #008f6f;
+    --wa-text: #e9edef;
+    --wa-text-muted: #8696a0;
+    --wa-bar: #202c33;
+    --wa-border: #222d34;
+  }
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
+  background-color: var(--wa-bg);
+  color: var(--wa-text);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  line-height: 1.6;
+  font-size: 15px;
+  line-height: 1.4;
   -webkit-font-smoothing: antialiased;
+  background-image: radial-gradient(#111b21 0.75px, transparent 0.75px), radial-gradient(#111b21 0.75px, #efeae2 0.75px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+  background-blend-mode: overlay;
 }
 
 /* Subtle, functional fade-up animation */
@@ -55,8 +84,26 @@ body {
   }
 }
 
-/* Custom focus ring */
+/* WhatsApp Bubble card utility */
+.wa-card {
+  background-color: var(--wa-bubble);
+  border-radius: 4px 12px 12px 12px;
+  box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13);
+  padding: 8px 12px;
+}
+
+.wa-card-dark {
+  background-color: var(--wa-bubble-dark);
+}
+
+/* Code block typography */
+pre, code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 13px;
+}
+
+/* Custom focus ring matching WhatsApp accent */
 *:focus-visible {
-  outline: 2px solid #1B4D3E;
+  outline: 2px solid var(--wa-accent);
   outline-offset: 2px;
 }

@@ -300,9 +300,9 @@ export default function CheckInput({
   ];
 
   return (
-    <div className="w-full bg-white border border-neutral-200 rounded-md p-4 sm:p-6 mb-8" onPaste={handlePaste}>
+    <div className="w-full bg-wa-bubble rounded-[4px_12px_12px_12px] p-3 sm:p-5 mb-6 shadow-[0_1px_0.5px_rgba(0,0,0,0.13)] border border-transparent" onPaste={handlePaste}>
       {/* Input Type Tabs */}
-      <div className="flex border-b border-neutral-200 mb-5 overflow-x-auto gap-1" role="tablist">
+      <div className="flex border-b border-[#c5ecbd] mb-5 overflow-x-auto gap-1" role="tablist">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;
@@ -318,8 +318,8 @@ export default function CheckInput({
               disabled={isLoading}
               className={`flex items-center gap-2 px-3 sm:px-4 py-2.5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap min-h-[44px] ${
                 isActive
-                  ? "border-[#1B4D3E] text-[#1B4D3E]"
-                  : "border-transparent text-neutral-600 hover:text-[#1A1A1A]"
+                  ? "border-wa-accent text-wa-accent"
+                  : "border-transparent text-wa-text-muted hover:text-wa-text"
               } disabled:opacity-50`}
             >
               <Icon className="w-4 h-4" />
@@ -340,9 +340,9 @@ export default function CheckInput({
               disabled={isLoading}
               rows={5}
               aria-label="Forwarded message text"
-              className="w-full p-3 border border-neutral-200 rounded-md text-[#1A1A1A] placeholder-neutral-400 focus:outline-none focus:ring-1 focus:ring-[#1B4D3E] focus:border-[#1B4D3E] text-base leading-relaxed resize-y"
+              className="w-full p-3 bg-white border border-[#d1d7db] rounded-2xl text-wa-text placeholder-neutral-400 focus:outline-none focus:ring-1 focus:ring-wa-accent focus:border-wa-accent text-base leading-relaxed resize-y shadow-xs"
             />
-            <div className="flex justify-between items-center text-xs text-neutral-500 mt-2 font-mono">
+            <div className="flex justify-between items-center text-xs text-wa-text-muted mt-2 font-mono">
               <span>{textInput.length} characters</span>
               <span>Drop chain greetings & noise automatically</span>
             </div>
@@ -356,7 +356,7 @@ export default function CheckInput({
               onDrop={handleDrop}
               onDragOver={(e) => e.preventDefault()}
               onClick={() => fileInputRef.current?.click()}
-              className="border-2 border-dashed border-neutral-300 rounded-md p-6 text-center hover:border-neutral-400 transition-colors cursor-pointer bg-[#FAFAF7]"
+              className="border-2 border-dashed border-[#c5ecbd] rounded-2xl p-6 text-center hover:border-wa-accent transition-colors cursor-pointer bg-white/70"
             >
               <input
                 ref={fileInputRef}
@@ -366,10 +366,10 @@ export default function CheckInput({
                 onChange={handleFileChange}
               />
               <Upload className="w-8 h-8 mx-auto text-neutral-400 mb-2" />
-              <p className="text-sm text-neutral-700 font-medium mb-1">
+              <p className="text-sm text-wa-text font-medium mb-1">
                 {selectedFile ? selectedFile.name : strings.dragDropImage}
               </p>
-              <p className="text-xs text-neutral-500">
+              <p className="text-xs text-wa-text-muted">
                 Supports WhatsApp screenshots, banners, newspaper clippings (PNG, JPG, WebP up to 10MB)
               </p>
             </div>
@@ -397,16 +397,16 @@ export default function CheckInput({
         {/* Tab 3: Voice Note */}
         {activeTab === "voice" && (
           <div className="space-y-4">
-            <div className="border border-neutral-200 rounded-md p-4 bg-[#FAFAF7] flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="border border-[#c5ecbd] rounded-2xl p-4 bg-white/70 flex flex-col sm:flex-row items-center justify-between gap-4">
               <div className="flex items-center gap-3">
                 <button
                   type="button"
                   onClick={isRecording ? stopRecording : startRecording}
                   disabled={isLoading}
-                  className={`flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium transition-colors min-h-[44px] ${
+                  className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-colors min-h-[44px] ${
                     isRecording
                       ? "bg-rose-700 text-white hover:bg-rose-800"
-                      : "bg-[#1B4D3E] text-white hover:bg-[#143A2F]"
+                      : "bg-wa-accent text-white hover:bg-wa-accent-hover"
                   }`}
                 >
                   {isRecording ? (
@@ -429,7 +429,7 @@ export default function CheckInput({
                 )}
               </div>
 
-              <span className="text-xs text-neutral-400 uppercase font-mono">or upload file</span>
+              <span className="text-xs text-wa-text-muted uppercase font-mono">or upload file</span>
 
               <div>
                 <input
@@ -441,7 +441,7 @@ export default function CheckInput({
                 />
                 <label
                   htmlFor="voice-file"
-                  className="inline-flex items-center gap-1.5 px-3 py-2 border border-neutral-300 rounded-md text-sm text-neutral-700 bg-white hover:bg-neutral-50 cursor-pointer min-h-[44px]"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 border border-[#d1d7db] rounded-full text-sm text-wa-text bg-white hover:bg-neutral-50 cursor-pointer min-h-[44px]"
                 >
                   <Upload className="w-4 h-4" />
                   <span>Choose audio file</span>
@@ -450,7 +450,7 @@ export default function CheckInput({
             </div>
 
             {selectedFile && (
-              <div className="text-xs text-neutral-600 flex items-center justify-between p-2 bg-neutral-50 border border-neutral-200 rounded-md">
+              <div className="text-xs text-wa-text flex items-center justify-between p-2.5 bg-white/70 border border-[#c5ecbd] rounded-xl">
                 <span>Selected: {selectedFile.name} ({(selectedFile.size / 1024).toFixed(1)} KB)</span>
                 <button
                   type="button"
@@ -471,7 +471,7 @@ export default function CheckInput({
               onDrop={handleDrop}
               onDragOver={(e) => e.preventDefault()}
               onClick={() => fileInputRef.current?.click()}
-              className="border-2 border-dashed border-neutral-300 rounded-md p-6 text-center hover:border-neutral-400 transition-colors cursor-pointer bg-[#FAFAF7]"
+              className="border-2 border-dashed border-[#c5ecbd] rounded-2xl p-6 text-center hover:border-wa-accent transition-colors cursor-pointer bg-white/70"
             >
               <input
                 ref={fileInputRef}
@@ -481,15 +481,15 @@ export default function CheckInput({
                 onChange={handleFileChange}
               />
               <FileCode className="w-8 h-8 mx-auto text-neutral-400 mb-2" />
-              <p className="text-sm text-neutral-700 font-medium mb-1">
+              <p className="text-sm text-wa-text font-medium mb-1">
                 {selectedFile ? selectedFile.name : strings.dragDropPdf}
               </p>
-              <p className="text-xs text-neutral-500">
+              <p className="text-xs text-wa-text-muted">
                 Government notices, circulars, circular PDFs (up to 10MB)
               </p>
             </div>
             {selectedFile && (
-              <div className="mt-2 text-xs text-neutral-600 flex items-center justify-between p-2 bg-neutral-50 border border-neutral-200 rounded-md">
+              <div className="mt-2 text-xs text-wa-text flex items-center justify-between p-2.5 bg-white/70 border border-[#c5ecbd] rounded-xl">
                 <span>Attached: {selectedFile.name}</span>
                 <button
                   type="button"
@@ -513,9 +513,9 @@ export default function CheckInput({
               placeholder={strings.placeholderUrl}
               disabled={isLoading}
               aria-label="Article or viral URL"
-              className="w-full p-3 border border-neutral-200 rounded-md text-[#1A1A1A] placeholder-neutral-400 focus:outline-none focus:ring-1 focus:ring-[#1B4D3E] focus:border-[#1B4D3E] text-base"
+              className="w-full p-3 bg-white border border-[#d1d7db] rounded-full text-wa-text placeholder-neutral-400 focus:outline-none focus:ring-1 focus:ring-wa-accent focus:border-wa-accent text-base shadow-xs"
             />
-            <p className="text-xs text-neutral-500 mt-2">
+            <p className="text-xs text-wa-text-muted mt-2">
               Clean article extraction via trafilatura. (Sites with paywalls or logins cannot be opened).
             </p>
           </div>
@@ -524,7 +524,7 @@ export default function CheckInput({
         {/* Inline Error Notice */}
         {inlineError && (
           <div
-            className="mt-4 p-3 bg-rose-50 border border-rose-200 rounded-md flex items-start gap-2.5 text-sm text-rose-800"
+            className="mt-4 p-3 bg-rose-50 border border-rose-200 rounded-xl flex items-start gap-2.5 text-sm text-rose-800"
             role="alert"
           >
             <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5 text-rose-700" />
@@ -533,8 +533,8 @@ export default function CheckInput({
         )}
 
         {/* Submit Actions */}
-        <div className="mt-5 flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-neutral-100">
-          <p className="text-xs text-neutral-500 font-sans max-w-md hidden sm:block">
+        <div className="mt-5 flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-[#c5ecbd]/60">
+          <p className="text-xs text-wa-text-muted font-sans max-w-md hidden sm:block">
             {strings.officialWarning}
           </p>
 
@@ -544,7 +544,7 @@ export default function CheckInput({
                 type="button"
                 onClick={clearForm}
                 disabled={isLoading}
-                className="px-3 py-2 text-sm text-neutral-600 hover:text-[#1A1A1A] min-h-[44px]"
+                className="px-4 py-2 text-sm text-wa-text-muted hover:text-wa-text rounded-full min-h-[44px]"
               >
                 {strings.clear}
               </button>
@@ -552,7 +552,7 @@ export default function CheckInput({
             <button
               type="submit"
               disabled={isLoading}
-              className="px-5 py-2.5 bg-[#1B4D3E] text-white rounded-md text-sm font-medium hover:bg-[#143A2F] transition-colors focus:ring-2 focus:ring-offset-2 focus:ring-[#1B4D3E] disabled:opacity-50 min-h-[44px] flex items-center gap-2"
+              className="px-6 py-2.5 bg-wa-accent text-white rounded-full text-sm font-medium hover:bg-wa-accent-hover transition-colors focus:ring-2 focus:ring-offset-2 focus:ring-wa-accent disabled:opacity-50 min-h-[44px] flex items-center gap-2 shadow-sm"
             >
               <span>{isLoading ? strings.checking : strings.checkButton}</span>
             </button>

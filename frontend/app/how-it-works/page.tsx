@@ -68,28 +68,28 @@ export default function HowItWorksPage() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAFAF7]">
+    <div className="min-h-screen flex flex-col bg-wa-bg text-wa-text">
       <Navbar currentLang={currentLang} onLanguageChange={setCurrentLang} />
 
-      <main className="flex-1 max-w-3xl w-full mx-auto px-4 py-10 sm:py-16">
-        <div className="mb-12">
-          <span className="text-xs uppercase font-mono tracking-wider text-neutral-500">
+      <main className="flex-1 max-w-3xl w-full mx-auto px-4 py-8 sm:py-12">
+        <div className="mb-10">
+          <span className="text-xs uppercase font-mono tracking-wider text-wa-text-muted">
             Pipeline Architecture
           </span>
-          <h1 className="text-2xl sm:text-3xl font-serif font-bold text-[#1A1A1A] mt-1">
+          <h1 className="text-2xl sm:text-3xl font-serif font-bold text-wa-text mt-1">
             How Sach? verifies a forward
           </h1>
-          <p className="mt-2 text-sm sm:text-base text-neutral-600 leading-relaxed">
+          <p className="mt-2 text-sm sm:text-base text-wa-text/80 leading-relaxed">
             Every query runs through a 5-stage verification funnel. No AI guesses, no
             hallucinated URLs, and zero responses without traceable official citations.
           </p>
         </div>
 
         {/* Vertical Pipeline with scroll indicator */}
-        <div className="relative pl-6 sm:pl-10 space-y-12">
+        <div className="relative pl-6 sm:pl-10 space-y-8 sm:space-y-10">
           {/* Vertical continuous line */}
           <div
-            className="absolute left-[13px] sm:left-[21px] top-4 bottom-4 w-0.5 bg-neutral-200 transition-colors"
+            className="absolute left-[13px] sm:left-[21px] top-4 bottom-4 w-0.5 bg-[#b5deb0] transition-colors"
             aria-hidden="true"
           />
 
@@ -106,12 +106,12 @@ export default function HowItWorksPage() {
               >
                 {/* Step Circle Node */}
                 <div
-                  className={`absolute -left-[30px] sm:-left-[42px] top-1 w-7 h-7 sm:w-9 sm:h-9 rounded-full border flex items-center justify-center font-mono text-xs sm:text-sm transition-all duration-300 ${
+                  className={`absolute -left-[30px] sm:-left-[42px] top-1 w-7 h-7 sm:w-9 sm:h-9 rounded-full border flex items-center justify-center font-mono text-xs sm:text-sm font-semibold transition-all duration-300 ${
                     isCurrent
-                      ? "bg-[#1B4D3E] border-[#1B4D3E] text-white ring-4 ring-[#1B4D3E]/10"
+                      ? "bg-wa-accent border-wa-accent text-white ring-4 ring-wa-accent/20"
                       : isActive
-                      ? "bg-[#1B4D3E] border-[#1B4D3E] text-white"
-                      : "bg-white border-neutral-300 text-neutral-500"
+                      ? "bg-wa-accent border-wa-accent text-white"
+                      : "bg-white border-[#d1d7db] text-wa-text-muted"
                   }`}
                 >
                   {step.step}
@@ -119,27 +119,27 @@ export default function HowItWorksPage() {
 
                 {/* Step Content */}
                 <div
-                  className={`bg-white border rounded-md p-5 sm:p-6 transition-all duration-200 ${
+                  className={`bg-wa-bubble rounded-[4px_12px_12px_12px] p-3 sm:p-5 shadow-[0_1px_0.5px_rgba(0,0,0,0.13)] transition-all duration-200 border ${
                     isCurrent
-                      ? "border-[#1B4D3E]/60 shadow-sm"
-                      : "border-neutral-200"
+                      ? "border-wa-accent/40"
+                      : "border-transparent"
                   }`}
                 >
                   <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                    <span className="text-xs font-mono text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded">
+                    <span className="text-xs font-mono text-wa-accent bg-white/80 border border-[#b5deb0] px-2 py-0.5 rounded-full font-medium">
                       {step.tag}
                     </span>
-                    <span className="text-xs text-neutral-400 font-mono">
+                    <span className="text-xs text-wa-text-muted font-mono">
                       Phase 0{step.step}
                     </span>
                   </div>
 
-                  <h2 className="text-lg font-serif font-semibold text-[#1A1A1A] flex items-center gap-2">
-                    <Icon className="w-5 h-5 text-[#1B4D3E] flex-shrink-0" />
+                  <h2 className="text-lg font-serif font-semibold text-wa-text flex items-center gap-2">
+                    <Icon className="w-5 h-5 text-wa-accent flex-shrink-0" />
                     <span>{step.title}</span>
                   </h2>
 
-                  <p className="mt-3 text-sm text-neutral-600 leading-relaxed font-sans">
+                  <p className="mt-3 text-sm text-wa-text/80 leading-relaxed font-sans">
                     {step.description}
                   </p>
                 </div>
@@ -149,13 +149,13 @@ export default function HowItWorksPage() {
         </div>
 
         {/* Closing note */}
-        <div className="mt-16 p-5 bg-white border border-neutral-200 rounded-md text-xs text-neutral-600">
-          <p className="font-medium text-neutral-800 mb-1">
+        <div className="mt-12 bg-wa-bubble rounded-[4px_12px_12px_12px] p-3 sm:p-5 shadow-[0_1px_0.5px_rgba(0,0,0,0.13)] border border-transparent text-xs text-wa-text/80">
+          <p className="font-semibold text-wa-text mb-1">
             Accountability and Reproducibility:
           </p>
           <p className="leading-relaxed">
             All code in Sach? is modular and unit-tested against real viral claims. You can inspect
-            the exact domain allowlist in <code className="bg-neutral-100 px-1 py-0.5 rounded text-neutral-800">backend/config.py</code>.
+            the exact domain allowlist in <code className="bg-wa-bubble-dark px-1.5 py-0.5 rounded text-wa-text text-xs border border-[#b5deb0]">backend/config.py</code>.
           </p>
         </div>
       </main>

@@ -46,20 +46,20 @@ export default function HistoryPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAFAF7]">
+    <div className="min-h-screen flex flex-col bg-wa-bg text-wa-text">
       <Navbar currentLang={currentLang} onLanguageChange={setCurrentLang} />
 
-      <main className="flex-1 max-w-4xl w-full mx-auto px-4 py-10 sm:py-14">
+      <main className="flex-1 max-w-4xl w-full mx-auto px-4 py-8 sm:py-12">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-2xl font-serif font-bold text-[#1A1A1A]">
+            <h1 className="text-2xl font-serif font-bold text-wa-text">
               Verification History
             </h1>
-            <p className="mt-1 text-sm text-neutral-600">
+            <p className="mt-1 text-sm text-wa-text/80">
               Past checks performed on this instance. Phone numbers and personal emails are redacted.
             </p>
           </div>
-          <span className="text-xs font-mono text-neutral-500 bg-white border border-neutral-200 px-3 py-1.5 rounded-md">
+          <span className="text-xs font-mono text-wa-text-muted bg-white border border-[#d1d7db] px-3 py-1.5 rounded-full">
             {historyItems.length} records saved
           </span>
         </div>
@@ -70,11 +70,11 @@ export default function HistoryPage() {
             {[1, 2, 3].map((n) => (
               <div
                 key={n}
-                className="bg-white border border-neutral-200 rounded-md p-4 animate-pulse"
+                className="bg-wa-bubble rounded-[4px_12px_12px_12px] p-4 shadow-[0_1px_0.5px_rgba(0,0,0,0.13)] border border-transparent animate-pulse"
               >
-                <div className="h-4 bg-neutral-200 rounded w-1/4 mb-3" />
-                <div className="h-4 bg-neutral-100 rounded w-3/4 mb-2" />
-                <div className="h-3 bg-neutral-100 rounded w-1/2" />
+                <div className="h-4 bg-wa-bubble-dark rounded w-1/4 mb-3" />
+                <div className="h-4 bg-wa-bubble-dark/60 rounded w-3/4 mb-2" />
+                <div className="h-3 bg-wa-bubble-dark/40 rounded w-1/2" />
               </div>
             ))}
           </div>
@@ -82,19 +82,19 @@ export default function HistoryPage() {
 
         {/* Error State */}
         {!isLoading && errorMsg && (
-          <div className="bg-rose-50 border border-rose-200 rounded-md p-4 text-sm text-rose-800">
+          <div className="bg-rose-50 border border-rose-200 rounded-[4px_12px_12px_12px] p-4 text-sm text-rose-800">
             {errorMsg}
           </div>
         )}
 
         {/* Empty State */}
         {!isLoading && !errorMsg && historyItems.length === 0 && (
-          <div className="bg-white border border-neutral-200 rounded-md p-12 text-center">
-            <Inbox className="w-10 h-10 mx-auto text-neutral-400 mb-3" />
-            <h2 className="text-base font-serif font-semibold text-[#1A1A1A]">
+          <div className="bg-wa-bubble rounded-[4px_12px_12px_12px] p-12 text-center shadow-[0_1px_0.5px_rgba(0,0,0,0.13)] border border-transparent">
+            <Inbox className="w-10 h-10 mx-auto text-wa-text-muted mb-3" />
+            <h2 className="text-base font-serif font-semibold text-wa-text">
               No checks saved yet
             </h2>
-            <p className="text-xs text-neutral-500 mt-1 max-w-sm mx-auto">
+            <p className="text-xs text-wa-text/70 mt-1 max-w-sm mx-auto">
               {strings.noHistory}
             </p>
           </div>
@@ -106,11 +106,11 @@ export default function HistoryPage() {
             {historyItems.map((item) => (
               <article
                 key={item.id}
-                className="bg-white border border-neutral-200 rounded-md p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 hover:border-neutral-300 transition-colors"
+                className="bg-wa-bubble rounded-[4px_12px_12px_12px] p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-[0_1px_0.5px_rgba(0,0,0,0.13)] border border-transparent hover:border-[#b5deb0] transition-colors"
               >
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1.5 text-xs text-neutral-500 font-mono">
-                    <span className="uppercase px-1.5 py-0.5 bg-neutral-100 rounded">
+                  <div className="flex items-center gap-2 mb-1.5 text-xs text-wa-text-muted font-mono">
+                    <span className="uppercase px-1.5 py-0.5 bg-wa-bubble-dark text-wa-text text-[11px] rounded-md border border-[#b5deb0]">
                       {item.input_type}
                     </span>
                     <span>•</span>
@@ -120,11 +120,11 @@ export default function HistoryPage() {
                     </span>
                   </div>
 
-                  <p className="text-sm font-sans font-medium text-[#1A1A1A] truncate mb-1">
+                  <p className="text-sm font-sans font-medium text-wa-text truncate mb-1">
                     &ldquo;{item.snippet}&rdquo;
                   </p>
 
-                  <p className="text-xs text-neutral-600 line-clamp-1">
+                  <p className="text-xs text-wa-text/80 line-clamp-1">
                     {item.summary_text}
                   </p>
                 </div>
@@ -135,7 +135,7 @@ export default function HistoryPage() {
                   <button
                     onClick={() => handleDelete(item.id)}
                     disabled={deletingId === item.id}
-                    className="p-1.5 text-neutral-400 hover:text-rose-700 hover:bg-rose-50 rounded-md transition-colors"
+                    className="p-1.5 text-wa-text-muted hover:text-rose-700 hover:bg-rose-50 rounded-full transition-colors"
                     aria-label={`Delete record ${item.id}`}
                     title="Delete record"
                   >

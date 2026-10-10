@@ -55,19 +55,19 @@ export default function FeedbackModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs"
       role="dialog"
       aria-modal="true"
       aria-labelledby="feedback-title"
     >
-      <div className="bg-white rounded-md border border-neutral-200 max-w-lg w-full p-6 shadow-lg">
-        <div className="flex items-center justify-between border-b border-neutral-100 pb-3 mb-4">
-          <h2 id="feedback-title" className="font-serif text-lg font-semibold text-[#1A1A1A]">
+      <div className="bg-white rounded-2xl border border-[#d1d7db] max-w-lg w-full p-6 shadow-xl">
+        <div className="flex items-center justify-between border-b border-[#e9edef] pb-3 mb-4">
+          <h2 id="feedback-title" className="font-serif text-lg font-semibold text-wa-text">
             Report a wrong verdict
           </h2>
           <button
             onClick={onClose}
-            className="text-neutral-400 hover:text-neutral-700 p-1 rounded-md"
+            className="text-wa-text-muted hover:text-wa-text p-1.5 rounded-full hover:bg-neutral-100 transition-colors"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
@@ -75,26 +75,26 @@ export default function FeedbackModal({
         </div>
 
         {isSubmitted ? (
-          <div className="py-8 text-center text-emerald-800">
-            <Check className="w-10 h-10 mx-auto mb-2 text-emerald-600" />
-            <p className="font-medium text-base">Correction submitted!</p>
-            <p className="text-xs text-neutral-500 mt-1">
+          <div className="py-8 text-center text-wa-accent">
+            <Check className="w-10 h-10 mx-auto mb-2 text-wa-accent" />
+            <p className="font-medium text-base text-wa-text">Correction submitted!</p>
+            <p className="text-xs text-wa-text-muted mt-1">
               Thank you for helping keep the system accurate and accountable.
             </p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4 text-sm">
             <div>
-              <label className="block text-xs font-mono uppercase text-neutral-500 mb-1">
-                Current Verdict: <strong className="text-neutral-800">{currentVerdict}</strong>
+              <label className="block text-xs font-mono uppercase text-wa-text-muted mb-1">
+                Current Verdict: <strong className="text-wa-text">{currentVerdict}</strong>
               </label>
-              <label className="block text-xs text-neutral-700 font-medium mb-1">
+              <label className="block text-xs text-wa-text font-medium mb-1">
                 What should the correct verdict be?
               </label>
               <select
                 value={expectedVerdict}
                 onChange={(e) => setExpectedVerdict(e.target.value as VerdictType)}
-                className="w-full p-2 border border-neutral-300 rounded-md bg-white text-[#1A1A1A]"
+                className="w-full p-2.5 border border-[#d1d7db] rounded-xl bg-white text-wa-text focus:outline-none focus:ring-2 focus:ring-wa-accent"
               >
                 <option value="Verified">Verified (Official sources confirm it)</option>
                 <option value="False">False (Contradicts facts)</option>
@@ -105,7 +105,7 @@ export default function FeedbackModal({
             </div>
 
             <div>
-              <label className="block text-xs text-neutral-700 font-medium mb-1">
+              <label className="block text-xs text-wa-text font-medium mb-1">
                 Authoritative source link or gazette notification (optional)
               </label>
               <input
@@ -113,12 +113,12 @@ export default function FeedbackModal({
                 value={correctionUrl}
                 onChange={(e) => setCorrectionUrl(e.target.value)}
                 placeholder="https://pib.gov.in/PressRelease..."
-                className="w-full p-2 border border-neutral-300 rounded-md"
+                className="w-full p-2.5 border border-[#d1d7db] rounded-xl bg-white text-wa-text placeholder:text-wa-text-muted focus:outline-none focus:ring-2 focus:ring-wa-accent"
               />
             </div>
 
             <div>
-              <label className="block text-xs text-neutral-700 font-medium mb-1">
+              <label className="block text-xs text-wa-text font-medium mb-1">
                 Why is the current verdict wrong? (context / date changed)
               </label>
               <textarea
@@ -126,26 +126,26 @@ export default function FeedbackModal({
                 onChange={(e) => setNotes(e.target.value)}
                 rows={3}
                 placeholder="Explain what was missed or how the regulation changed..."
-                className="w-full p-2 border border-neutral-300 rounded-md resize-y"
+                className="w-full p-2.5 border border-[#d1d7db] rounded-xl bg-white text-wa-text placeholder:text-wa-text-muted focus:outline-none focus:ring-2 focus:ring-wa-accent resize-y"
               />
             </div>
 
             {errorMsg && (
-              <p className="text-xs text-rose-700 bg-rose-50 p-2 rounded-md">{errorMsg}</p>
+              <p className="text-xs text-rose-700 bg-rose-50 p-2.5 rounded-xl border border-rose-200">{errorMsg}</p>
             )}
 
-            <div className="flex justify-end gap-2 pt-2 border-t border-neutral-100">
+            <div className="flex justify-end gap-2 pt-3 border-t border-[#e9edef]">
               <button
                 type="button"
                 onClick={onClose}
-                className="px-3 py-2 text-neutral-600 hover:text-neutral-900 rounded-md"
+                className="px-4 py-2 text-wa-text-muted hover:text-wa-text rounded-full transition-colors font-medium text-xs sm:text-sm"
               >
                 Cancel
               </button>
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="px-4 py-2 bg-[#1B4D3E] text-white rounded-md hover:bg-[#143A2F] flex items-center gap-1.5 disabled:opacity-50"
+                className="px-4 py-2 bg-wa-accent text-white rounded-full hover:bg-[#008f6f] flex items-center gap-1.5 font-medium text-xs sm:text-sm shadow-sm transition-all disabled:opacity-50"
               >
                 <Send className="w-3.5 h-3.5" />
                 <span>Submit Correction</span>
