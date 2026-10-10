@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --wa-bg: #efeae2;
+  --wa-bg: #ece5dd;
   --wa-bubble: #d9fdd3;
   --wa-bubble-dark: #c5ecbd;
   --wa-accent: #00a884;
   --wa-accent-hover: #008f6f;
   --wa-text: #111b21;
   --wa-text-muted: #8696a0;
-  --wa-bar: #f0f2f5;
+  --wa-bar: #ffffff;
   --wa-border: #d1d7db;
 
   --background: var(--wa-bg);
@@ -32,16 +32,39 @@
 }
 
 body {
-  background-color: var(--wa-bg);
+  background-color: #ece5dd;
+  background-image: url('/bg-doodle.svg');
+  background-repeat: repeat;
+  background-size: 400px;
+  background-attachment: fixed;
   color: var(--wa-text);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 15px;
   line-height: 1.4;
   -webkit-font-smoothing: antialiased;
-  background-image: radial-gradient(#111b21 0.75px, transparent 0.75px), radial-gradient(#111b21 0.75px, #efeae2 0.75px);
-  background-size: 30px 30px;
-  background-position: 0 0, 15px 15px;
-  background-blend-mode: overlay;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="dark"] body {
+    background-color: #0b141a;
+  }
+}
+
+/* Keep the main content area transparent so the wallpaper shows */
+.min-h-screen.bg-wa-bg,
+div.bg-wa-bg {
+  background-color: transparent !important;
+}
+
+/* Ensure sticky navbar and footer stay solid white */
+header,
+header.bg-wa-bar {
+  background-color: #ffffff !important;
+}
+
+footer,
+footer.bg-wa-bar {
+  background-color: #ffffff !important;
 }
 
 /* Subtle, functional fade-up animation */

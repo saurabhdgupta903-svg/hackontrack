@@ -1,0 +1,329 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400" fill="none">
+  <defs>
+    <style>
+      .doodle {
+        stroke: #c9bba8;
+        stroke-width: 1.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-opacity: 0.4;
+        fill: none;
+      }
+      .doodle-fill {
+        fill: #c9bba8;
+        fill-opacity: 0.4;
+        stroke: none;
+      }
+      @media (prefers-color-scheme: dark) {
+        .doodle {
+          stroke: #ffffff;
+          stroke-opacity: 0.05;
+        }
+        .doodle-fill {
+          fill: #ffffff;
+          fill-opacity: 0.05;
+        }
+      }
+    </style>
+  </defs>
+
+  <g class="doodle">
+    <!-- 1. Chat bubble (top-left edge wrap at x=0 & x=400) -->
+    <!-- Center at (0, 45) and (400, 45) -->
+    <g transform="translate(0, 45) rotate(-12)">
+      <path d="M-14 -10 C-14 -16, 14 -16, 14 -10 C14 -4, 6 -4, 2 -4 L-4 0 L-2 -4 C-10 -4, -14 -7, -14 -10 Z" />
+      <path d="M-6 -10 L6 -10" />
+      <path d="M-4 -7 L4 -7" />
+    </g>
+    <g transform="translate(400, 45) rotate(-12)">
+      <path d="M-14 -10 C-14 -16, 14 -16, 14 -10 C14 -4, 6 -4, 2 -4 L-4 0 L-2 -4 C-10 -4, -14 -7, -14 -10 Z" />
+      <path d="M-6 -10 L6 -10" />
+      <path d="M-4 -7 L4 -7" />
+    </g>
+
+    <!-- 2. Phone handset at (65, 30) -->
+    <g transform="translate(65, 30) rotate(25)">
+      <path d="M-8 -12 C-10 -8, -10 8, -4 12 C-2 13, 1 12, 3 9 L1 6 C0 5, -1 5, -2 6 C-4 3, -4 0, -3 -2 C-2 -1, -1 -1, 0 -2 L-1 -5 C-3 -7, -5 -9, -8 -12 Z" />
+    </g>
+
+    <!-- 3. Heart at (140, 40) -->
+    <g transform="translate(140, 40) rotate(-8)">
+      <path d="M0 4 C-8 -4, -12 -10, -6 -14 C-2 -16, 0 -12, 0 -10 C0 -12, 2 -16, 6 -14 C12 -10, 8 -4, 0 4 Z" />
+    </g>
+
+    <!-- 4. Camera at (210, 35) -->
+    <g transform="translate(210, 35) rotate(10)">
+      <rect x="-12" y="-8" width="24" height="16" rx="3" />
+      <circle cx="0" cy="0" r="5" />
+      <path d="M-6 -8 L-4 -12 L4 -12 L6 -8" />
+      <circle cx="7" cy="-4" r="1" class="doodle-fill" />
+    </g>
+
+    <!-- 5. Music note at (285, 45) -->
+    <g transform="translate(285, 45) rotate(-15)">
+      <ellipse cx="-6" cy="6" rx="4" ry="3" transform="rotate(-20 -6 6)" />
+      <ellipse cx="6" cy="3" rx="4" ry="3" transform="rotate(-20 6 3)" />
+      <path d="M-3 5 L-3 -8 L9 -11 L9 2" />
+      <path d="M-3 -5 L9 -8" />
+    </g>
+
+    <!-- 6. Paperclip at (355, 30) -->
+    <g transform="translate(355, 30) rotate(40)">
+      <path d="M-5 6 L-5 -6 C-5 -10, 1 -10, 1 -6 L1 8 C1 11, -3 11, -3 8 L-3 -3 C-3 -5, -1 -5, -1 -3 L-1 5" />
+    </g>
+
+    <!-- 7. Clock (top edge wrap at y=0 & y=400) -->
+    <!-- Center at (105, 0) and (105, 400) -->
+    <g transform="translate(105, 0) rotate(5)">
+      <circle cx="0" cy="0" r="10" />
+      <path d="M0 -6 L0 0 L4 3" />
+    </g>
+    <g transform="translate(105, 400) rotate(5)">
+      <circle cx="0" cy="0" r="10" />
+      <path d="M0 -6 L0 0 L4 3" />
+    </g>
+
+    <!-- 8. Thumbs up at (175, 100) -->
+    <g transform="translate(175, 100) rotate(-10)">
+      <path d="M-7 4 L-7 -3 L-2 -3 L1 -9 C2 -11, 4 -10, 4 -8 L3 -3 L8 -3 C10 -3, 10 -1, 9 1 L7 7 C6 9, 4 9, 2 9 L-7 9 Z" />
+      <path d="M-7 -3 L-10 -3 L-10 9 L-7 9" />
+    </g>
+
+    <!-- 9. Star at (40, 105) -->
+    <g transform="translate(40, 105) rotate(18)">
+      <path d="M0 -10 L3 -3 L10 -3 L5 2 L7 9 L0 5 L-7 9 L-5 2 L-10 -3 L-3 -3 Z" />
+    </g>
+
+    <!-- 10. Microphone at (110, 85) -->
+    <g transform="translate(110, 85) rotate(-22)">
+      <rect x="-4" y="-10" width="8" height="14" rx="4" />
+      <path d="M-7 -3 C-7 5, 7 5, 7 -3" />
+      <path d="M0 5 L0 10 M-4 10 L4 10" />
+    </g>
+
+    <!-- 11. Location pin at (245, 95) -->
+    <g transform="translate(245, 95) rotate(12)">
+      <path d="M0 10 C-6 3, -8 -2, -8 -5 C-8 -9, -4 -13, 0 -13 C4 -13, 8 -9, 8 -5 C8 -2, 6 3, 0 10 Z" />
+      <circle cx="0" cy="-5" r="2.5" />
+    </g>
+
+    <!-- 12. Envelope at (320, 100) -->
+    <g transform="translate(320, 100) rotate(-14)">
+      <rect x="-12" y="-8" width="24" height="16" rx="2" />
+      <path d="M-12 -6 L0 3 L12 -6" />
+    </g>
+
+    <!-- 13. Smile face (right edge wrap at x=400 & x=0) -->
+    <!-- Center at (400, 130) and (0, 130) -->
+    <g transform="translate(400, 130) rotate(8)">
+      <circle cx="0" cy="0" r="11" />
+      <circle cx="-4" cy="-3" r="1.2" class="doodle-fill" />
+      <circle cx="4" cy="-3" r="1.2" class="doodle-fill" />
+      <path d="M-5 2 C-3 6, 3 6, 5 2" />
+    </g>
+    <g transform="translate(0, 130) rotate(8)">
+      <circle cx="0" cy="0" r="11" />
+      <circle cx="-4" cy="-3" r="1.2" class="doodle-fill" />
+      <circle cx="4" cy="-3" r="1.2" class="doodle-fill" />
+      <path d="M-5 2 C-3 6, 3 6, 5 2" />
+    </g>
+
+    <!-- 14. Search magnifying glass at (70, 160) -->
+    <g transform="translate(70, 160) rotate(-35)">
+      <circle cx="-3" cy="-3" r="7" />
+      <path d="M3 3 L10 10" />
+    </g>
+
+    <!-- 15. Coffee cup at (145, 165) -->
+    <g transform="translate(145, 165) rotate(5)">
+      <path d="M-8 -6 L-7 6 C-7 8, 5 8, 5 6 L6 -6 Z" />
+      <path d="M6 -4 C9 -4, 9 2, 6 2" />
+      <path d="M-4 -9 C-4 -8, -3 -7, -4 -6 M0 -9 C0 -8, 1 -7, 0 -6 M4 -9 C4 -8, 5 -7, 4 -6" />
+    </g>
+
+    <!-- 16. Bell at (215, 160) -->
+    <g transform="translate(215, 160) rotate(-15)">
+      <path d="M-6 4 C-6 -4, -4 -8, 0 -9 C4 -8, 6 -4, 6 4 L8 7 L-8 7 Z" />
+      <path d="M-2 7 C-2 9, 2 9, 2 7" />
+      <circle cx="0" cy="-10" r="1" />
+    </g>
+
+    <!-- 17. Paper plane at (290, 165) -->
+    <g transform="translate(290, 165) rotate(25)">
+      <path d="M-10 8 L12 0 L-10 -8 L-5 0 Z" />
+      <path d="M-5 0 L12 0" />
+    </g>
+
+    <!-- 18. Chat bubble 2 at (365, 175) -->
+    <g transform="translate(365, 175) rotate(12)">
+      <path d="M-10 -8 C-10 -12, 10 -12, 10 -8 C10 -4, 4 -4, 1 -4 L-3 -1 L-2 -4 C-8 -4, -10 -5, -10 -8 Z" />
+      <circle cx="-4" cy="-8" r="1" class="doodle-fill" />
+      <circle cx="0" cy="-8" r="1" class="doodle-fill" />
+      <circle cx="4" cy="-8" r="1" class="doodle-fill" />
+    </g>
+
+    <!-- 19. Sparkle / Star 2 (bottom edge wrap at y=400 & y=0) -->
+    <!-- Center at (240, 0) and (240, 400) -->
+    <g transform="translate(240, 0)">
+      <path d="M0 -8 L2 -2 L8 0 L2 2 L0 8 L-2 2 L-8 0 L-2 -2 Z" />
+    </g>
+    <g transform="translate(240, 400)">
+      <path d="M0 -8 L2 -2 L8 0 L2 2 L0 8 L-2 2 L-8 0 L-2 -2 Z" />
+    </g>
+
+    <!-- 20. Camera 2 at (35, 230) -->
+    <g transform="translate(35, 230) rotate(-8)">
+      <rect x="-10" y="-7" width="20" height="14" rx="2.5" />
+      <circle cx="0" cy="0" r="4" />
+      <path d="M-4 -7 L-2 -10 L2 -10 L4 -7" />
+    </g>
+
+    <!-- 21. Phone receiver 2 at (105, 235) -->
+    <g transform="translate(105, 235) rotate(-45)">
+      <path d="M-7 -10 C-9 -6, -9 6, -3 10 C-1 11, 2 10, 3 8 L1 5 C0 4, -1 4, -2 5 C-3 2, -3 0, -2 -2 C-1 -1, 0 -1, 1 -2 L0 -4 C-2 -6, -4 -8, -7 -10 Z" />
+    </g>
+
+    <!-- 22. Sun with rays at (175, 225) -->
+    <g transform="translate(175, 225) rotate(20)">
+      <circle cx="0" cy="0" r="6" />
+      <path d="M0 -9 L0 -7 M0 7 L0 9 M-9 0 L-7 0 M7 0 L9 0 M-6 -6 L-4.5 -4.5 M4.5 4.5 L6 6 M-6 6 L-4.5 4.5 M4.5 -4.5 L6 -6" />
+    </g>
+
+    <!-- 23. Heart 2 at (245, 230) -->
+    <g transform="translate(245, 230) rotate(15)">
+      <path d="M0 3 C-6 -3, -9 -8, -4 -11 C-1 -13, 0 -10, 0 -8 C0 -10, 1 -13, 4 -11 C9 -8, 6 -3, 0 3 Z" />
+    </g>
+
+    <!-- 24. Music note 2 at (320, 235) -->
+    <g transform="translate(320, 235) rotate(10)">
+      <ellipse cx="-4" cy="4" rx="3.5" ry="2.5" transform="rotate(-20 -4 4)" />
+      <path d="M-1 3.5 L-1 -7 L7 -9 L7 1" />
+      <ellipse cx="4" cy="1.5" rx="3.5" ry="2.5" transform="rotate(-20 4 1.5)" />
+    </g>
+
+    <!-- 25. Location pin 2 (wrap left/right at x=0 & x=400) -->
+    <!-- Center at (0, 275) and (400, 275) -->
+    <g transform="translate(0, 275) rotate(-10)">
+      <path d="M0 9 C-5 3, -7 -1, -7 -4 C-7 -8, -3 -11, 0 -11 C3 -11, 7 -8, 7 -4 C7 -1, 5 3, 0 9 Z" />
+      <circle cx="0" cy="-4" r="2" />
+    </g>
+    <g transform="translate(400, 275) rotate(-10)">
+      <path d="M0 9 C-5 3, -7 -1, -7 -4 C-7 -8, -3 -11, 0 -11 C3 -11, 7 -8, 7 -4 C7 -1, 5 3, 0 9 Z" />
+      <circle cx="0" cy="-4" r="2" />
+    </g>
+
+    <!-- 26. Clock 2 at (70, 295) -->
+    <g transform="translate(70, 295) rotate(-15)">
+      <circle cx="0" cy="0" r="9" />
+      <path d="M0 -5 L0 0 L3 2" />
+    </g>
+
+    <!-- 27. Paperclip 2 at (140, 295) -->
+    <g transform="translate(140, 295) rotate(-30)">
+      <path d="M-4 5 L-4 -5 C-4 -8, 1 -8, 1 -5 L1 7 C1 9, -2 9, -2 7 L-2 -2 C-2 -4, 0 -4, 0 -2 L0 4" />
+    </g>
+
+    <!-- 28. Thumbs up 2 at (210, 300) -->
+    <g transform="translate(210, 300) rotate(12)">
+      <path d="M-6 3 L-6 -2 L-2 -2 L1 -7 C1.5 -8.5, 3 -8, 3 -6.5 L2.5 -2 L6.5 -2 C8 -2, 8 -0.5, 7 1 L5.5 6 C5 7.5, 3.5 7.5, 2 7.5 L-6 7.5 Z" />
+      <path d="M-6 -2 L-8.5 -2 L-8.5 7.5 L-6 7.5" />
+    </g>
+
+    <!-- 29. Envelope 2 at (285, 305) -->
+    <g transform="translate(285, 305) rotate(8)">
+      <rect x="-10" y="-7" width="20" height="14" rx="2" />
+      <path d="M-10 -5 L0 2 L10 -5" />
+    </g>
+
+    <!-- 30. Star 3 at (355, 290) -->
+    <g transform="translate(355, 290) rotate(-18)">
+      <path d="M0 -8 L2.5 -2.5 L8 -2.5 L4 1.5 L5.5 7 L0 4 L-5.5 7 L-4 1.5 L-8 -2.5 L-2.5 -2.5 Z" />
+    </g>
+
+    <!-- 31. Microphone 2 (wrap top/bottom at y=0 & y=400) -->
+    <!-- Center at (360, 400) and (360, 0) -->
+    <g transform="translate(360, 400) rotate(20)">
+      <rect x="-3.5" y="-8" width="7" height="12" rx="3.5" />
+      <path d="M-6 -2 C-6 5, 6 5, 6 -2" />
+      <path d="M0 4.5 L0 9 M-3 9 L3 9" />
+    </g>
+    <g transform="translate(360, 0) rotate(20)">
+      <rect x="-3.5" y="-8" width="7" height="12" rx="3.5" />
+      <path d="M-6 -2 C-6 5, 6 5, 6 -2" />
+      <path d="M0 4.5 L0 9 M-3 9 L3 9" />
+    </g>
+
+    <!-- 32. Coffee cup 2 at (45, 360) -->
+    <g transform="translate(45, 360) rotate(-8)">
+      <path d="M-7 -5 L-6 5 C-6 7, 4 7, 4 5 L5 -5 Z" />
+      <path d="M5 -3 C7 -3, 7 2, 5 2" />
+    </g>
+
+    <!-- 33. Bell 2 at (115, 365) -->
+    <g transform="translate(115, 365) rotate(14)">
+      <path d="M-5 3 C-5 -3, -3 -6, 0 -7 C3 -6, 5 -3, 5 3 L6.5 6 L-6.5 6 Z" />
+      <path d="M-1.5 6 C-1.5 8, 1.5 8, 1.5 6" />
+    </g>
+
+    <!-- 34. Chat bubble 3 at (185, 360) -->
+    <g transform="translate(185, 360) rotate(-16)">
+      <path d="M-11 -8 C-11 -13, 11 -13, 11 -8 C11 -3, 5 -3, 2 -3 L-2 0 L-1 -3 C-7 -3, -11 -5, -11 -8 Z" />
+      <path d="M-5 -8 L5 -8" />
+    </g>
+
+    <!-- 35. Smile face 2 at (260, 365) -->
+    <g transform="translate(260, 365) rotate(-10)">
+      <circle cx="0" cy="0" r="10" />
+      <circle cx="-3.5" cy="-2.5" r="1" class="doodle-fill" />
+      <circle cx="3.5" cy="-2.5" r="1" class="doodle-fill" />
+      <path d="M-4 2 C-2 5, 2 5, 4 2" />
+    </g>
+
+    <!-- 36. Search magnifying glass 2 at (330, 360) -->
+    <g transform="translate(330, 360) rotate(30)">
+      <circle cx="-2.5" cy="-2.5" r="6" />
+      <path d="M2.5 2.5 L8 8" />
+    </g>
+
+    <!-- Tiny scattered filler elements (dots, crosses, sparkles, tiny circles) -->
+    <!-- Wrapped corner points (0,0), (400,0), (0,400), (400,400) -->
+    <g transform="translate(0, 0)"><circle cx="0" cy="0" r="1.5" class="doodle-fill" /></g>
+    <g transform="translate(400, 0)"><circle cx="0" cy="0" r="1.5" class="doodle-fill" /></g>
+    <g transform="translate(0, 400)"><circle cx="0" cy="0" r="1.5" class="doodle-fill" /></g>
+    <g transform="translate(400, 400)"><circle cx="0" cy="0" r="1.5" class="doodle-fill" /></g>
+
+    <!-- Fillers scattered evenly in spaces -->
+    <path d="M20 70 L26 70 M23 67 L23 73" />
+    <circle cx="95" cy="55" r="1.5" class="doodle-fill" />
+    <path d="M175 45 L181 45 M178 42 L178 48" />
+    <circle cx="250" cy="50" r="1.5" class="doodle-fill" />
+    <path d="M320 25 L324 25 M322 23 L322 27" />
+    <circle cx="385" cy="85" r="1.5" class="doodle-fill" />
+
+    <circle cx="20" cy="170" r="1.5" class="doodle-fill" />
+    <path d="M105 135 L111 135 M108 132 L108 138" />
+    <circle cx="180" cy="130" r="1.5" class="doodle-fill" />
+    <path d="M255 135 L261 135 M258 132 L258 138" />
+    <circle cx="350" cy="140" r="1.5" class="doodle-fill" />
+
+    <path d="M65 210 L69 210 M67 208 L67 212" />
+    <circle cx="140" cy="230" r="1.5" class="doodle-fill" />
+    <path d="M210 205 L216 205 M213 202 L213 208" />
+    <circle cx="285" cy="205" r="1.5" class="doodle-fill" />
+    <path d="M375 235 L381 235 M378 232 L378 238" />
+
+    <circle cx="25" cy="300" r="1.5" class="doodle-fill" />
+    <path d="M105 270 L111 270 M108 267 L108 273" />
+    <circle cx="175" cy="270" r="1.5" class="doodle-fill" />
+    <path d="M250 275 L256 275 M253 272 L253 278" />
+    <circle cx="320" cy="275" r="1.5" class="doodle-fill" />
+    <path d="M385 330 L391 330 M388 327 L388 333" />
+
+    <circle cx="80" cy="345" r="1.5" class="doodle-fill" />
+    <path d="M150 335 L156 335 M153 332 L153 338" />
+    <circle cx="225" cy="340" r="1.5" class="doodle-fill" />
+    <path d="M295 345 L301 345 M298 342 L298 348" />
+    <circle cx="370" cy="385" r="1.5" class="doodle-fill" />
+    <circle cx="15" cy="390" r="1.5" class="doodle-fill" />
+  </g>
+</svg>
