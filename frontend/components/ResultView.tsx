@@ -31,6 +31,19 @@ export default function ResultView({ data, currentLang }: ResultViewProps) {
 
   const strings = UI_STRINGS[currentLang] || UI_STRINGS.en;
 
+  // Cleanup audio & speechSynthesis on unmount
+  React.useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+      if (typeof window !== "undefined" && "speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+      }
+    };
+  }, []);
+
   const toggleEvidence = (claimId: string) => {
     setExpandedEvidence((prev) => ({
       ...prev,
@@ -283,10 +296,17 @@ export default function ResultView({ data, currentLang }: ResultViewProps) {
                           </p>
 
                           <div className="flex items-center justify-between pt-1">
-                            <span className="text-[11px] text-emerald-800 font-mono flex items-center gap-1">
-                              <CheckCircle2 className="w-3 h-3 text-emerald-700" />
-                              Allowlist Verified
-                            </span>
+                            {ev.is_verified_citation ? (
+                              <span className="text-[11px] text-emerald-800 font-mono flex items-center gap-1">
+                                <CheckCircle2 className="w-3 h-3 text-emerald-700" />
+                                Verbatim Match Verified
+                              </span>
+                            ) : (
+                              <span className="text-[11px] text-amber-800 font-mono flex items-center gap-1" title="URL from allowlisted domain, but quote could not be matched verbatim in source page text">
+                                <AlertOctagon className="w-3 h-3 text-amber-700" />
+                                Unverified Passage (Allowlisted Domain)
+                              </span>
+                            )}
                             <a
                               href={ev.url}
                               target="_blank"

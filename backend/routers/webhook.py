@@ -49,6 +49,7 @@ async def receive_whatsapp_message(request: Request):
     runs the fact-check pipeline, and prepares response text.
     """
     payload = await request.json()
+    processed = []
     try:
         entries = payload.get("entry", [])
         for entry in entries:
@@ -61,17 +62,36 @@ async def receive_whatsapp_message(request: Request):
                     msg_type = msg.get("type")
                     if msg_type == "text":
                         text_body = msg.get("text", {}).get("body", "")
+                        if not text_body.strip():
+                            continue
                         ingest_res = await ingest_text(text_body)
                         result = await run_pipeline_sync(ingest_res, target_language="auto")
-                        # In production with WHATSAPP_API_TOKEN, we post reply to Graph API
-                        # For now, return verified JSON payload
-                        return {
-                            "status": "processed",
+                        
+                        reply_text = f"Sach? Fact-Check Result:\nVerdict: {result.summary.dominant_verdict}\n\n{result.summary.summary_text}"
+                        
+                        # Send WhatsApp Graph API reply if credentials exist
+                        if WHATSAPP_API_TOKEN and PHONE_NUMBER_ID and sender:
+                            import httpx
+                            try:
+                                async with httpx.AsyncClient(timeout=10.0) as client:
+                                    await client.post(
+                                        f"https://graph.facebook.com/v19.0/{PHONE_NUMBER_ID}/messages",
+                                        headers={"Authorization": f"Bearer {WHATSAPP_API_TOKEN}"},
+                                        json={
+                                            "messaging_product": "whatsapp",
+                                            "to": sender,
+                                            "type": "text",
+                                            "text": {"body": reply_text}
+                                        }
+                                    )
+                            except Exception:
+                                pass
+
+                        processed.append({
                             "sender": sender,
                             "summary": result.summary.summary_text,
                             "dominant_verdict": result.summary.dominant_verdict
-                        }
+                        })
+        return {"status": "ok", "processed_count": len(processed), "results": processed}
     except Exception as e:
         return {"status": "error", "error": str(e)}
-
-    return {"status": "ok"}

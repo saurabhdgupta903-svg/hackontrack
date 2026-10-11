@@ -18,11 +18,14 @@ export default function HomePage() {
   } | null>(null);
   const [resultData, setResultData] = useState<FactCheckResponse | null>(null);
 
+  const [globalError, setGlobalError] = useState<string | null>(null);
+
   const strings = UI_STRINGS[currentLang] || UI_STRINGS.en;
 
   const handleStartCheck = () => {
     setIsLoading(true);
     setResultData(null);
+    setGlobalError(null);
     setProgressState({
       stage: "initializing",
       message: "Receiving forward and validating input...",
@@ -37,12 +40,14 @@ export default function HomePage() {
   const handleComplete = (data: FactCheckResponse) => {
     setIsLoading(false);
     setProgressState(null);
+    setGlobalError(null);
     setResultData(data);
   };
 
-  const handleError = (_errorMsg: string) => {
+  const handleError = (errorMsg: string) => {
     setIsLoading(false);
     setProgressState(null);
+    setGlobalError(errorMsg);
   };
 
   return (
@@ -69,6 +74,24 @@ export default function HomePage() {
           onError={handleError}
           isLoading={isLoading}
         />
+
+        {/* Global Error Banner */}
+        {globalError && (
+          <div className="mb-6 p-4 bg-rose-50 border border-rose-300 rounded-xl text-rose-800 text-sm flex items-start justify-between gap-3 shadow-xs" role="alert">
+            <div className="flex items-start gap-2.5">
+              <span className="font-semibold text-rose-900 mt-0.5">Error:</span>
+              <p className="leading-relaxed">{globalError}</p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setGlobalError(null)}
+              className="text-rose-500 hover:text-rose-700 text-xs font-semibold px-2 py-1 rounded"
+              aria-label="Dismiss error"
+            >
+              Dismiss
+            </button>
+          </div>
+        )}
 
         {/* Real-time SSE Progress Status */}
         {isLoading && progressState && (

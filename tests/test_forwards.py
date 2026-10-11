@@ -11,7 +11,13 @@ Prints a formatted accuracy and evaluation table.
 
 import asyncio
 import sys
+from pathlib import Path
 from typing import List, Dict, Any
+
+# Ensure project root is in sys.path
+BASE_DIR = Path(__file__).resolve().parent.parent
+if str(BASE_DIR) not in sys.path:
+    sys.path.insert(0, str(BASE_DIR))
 
 # Ensure UTF-8 output
 sys.stdout.reconfigure(encoding="utf-8")

@@ -45,42 +45,72 @@ export default function CheckInput({
   const [isRecording, setIsRecording] = useState(false);
   const [recordingSeconds, setRecordingSeconds] = useState(0);
   const [inlineError, setInlineError] = useState<string | null>(null);
+  const [isCancelling, setIsCancelling] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const abortControllerRef = useRef<AbortController | null>(null);
+  const streamActiveRef = useRef(false); // prevents double-submit
 
   const strings = UI_STRINGS[currentLang] || UI_STRINGS.en;
 
-  // Cleanup object URL
+  // Cleanup object URL on unmount
   useEffect(() => {
     return () => {
       if (previewUrl) URL.revokeObjectURL(previewUrl);
     };
+
   }, [previewUrl]);
 
-  // Handle voice recording timer
+  // Handle voice recording timer.
+  // FIX: stopRecording() must NOT be called inside the setRecordingSeconds state updater
+  // (side-effect inside a state setter causes bugs). Use a separate ref to track the limit.
+  const recordingSecondsRef = useRef(0);
   useEffect(() => {
     if (isRecording) {
+      recordingSecondsRef.current = 0;
       timerRef.current = setInterval(() => {
-        setRecordingSeconds((prev) => {
-          if (prev >= 120) {
-            stopRecording();
-            setInlineError("Voice note reached the 2-minute limit.");
-            return 120;
+        recordingSecondsRef.current += 1;
+        setRecordingSeconds(recordingSecondsRef.current);
+        if (recordingSecondsRef.current >= 120) {
+          // Stop recording cleanly — safe to call here (not inside a state updater)
+          if (mediaRecorderRef.current && mediaRecorderRef.current.state !== "inactive") {
+            mediaRecorderRef.current.stop();
           }
-          return prev + 1;
-        });
+          setIsRecording(false);
+          setInlineError("Voice note reached the 2-minute limit.");
+        }
       }, 1000);
     } else {
       if (timerRef.current) clearInterval(timerRef.current);
       setRecordingSeconds(0);
+      recordingSecondsRef.current = 0;
     }
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
   }, [isRecording]);
+
+  // Cleanup mic tracks and abort controller on unmount
+  useEffect(() => {
+    return () => {
+      if (mediaRecorderRef.current && mediaRecorderRef.current.state !== "inactive") {
+        mediaRecorderRef.current.stop();
+      }
+      // Stop mic tracks so the browser indicator disappears
+      const stream = (mediaRecorderRef.current as any)?._stream as MediaStream | undefined;
+      stream?.getTracks().forEach((t) => t.stop());
+      abortControllerRef.current?.abort();
+    };
+  }, []);
+
+  const cancelStream = () => {
+    abortControllerRef.current?.abort();
+    setIsCancelling(false);
+    streamActiveRef.current = false;
+  };
 
   const clearForm = () => {
     setTextInput("");
@@ -89,6 +119,20 @@ export default function CheckInput({
     if (previewUrl) URL.revokeObjectURL(previewUrl);
     setPreviewUrl(null);
     setInlineError(null);
+  };
+
+  // FIX: Switching tabs clears the selected file so stale files aren't submitted
+  // as the wrong type (e.g. an image submitted as a PDF).
+  const handleTabChange = (tab: TabType) => {
+    if (tab !== activeTab) {
+      setSelectedFile(null);
+      if (previewUrl) {
+        URL.revokeObjectURL(previewUrl);
+        setPreviewUrl(null);
+      }
+      setInlineError(null);
+    }
+    setActiveTab(tab);
   };
 
   const validateFile = (file: File, type: TabType): boolean => {
@@ -198,10 +242,15 @@ export default function CheckInput({
     }
   };
 
-  // Submit via SSE stream
+  // FIX: handleSubmit with AbortController (3-min timeout + Cancel button),
+  // double-submit guard, CRLF SSE line endings, ping comment skipping,
+  // and onError called if stream ends without a 'complete' event.
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setInlineError(null);
+
+    // FIX: Prevent double-submit
+    if (streamActiveRef.current || isLoading) return;
 
     // Validation
     if (activeTab === "text" && !textInput.trim()) {
@@ -224,6 +273,15 @@ export default function CheckInput({
     }
 
     onStartCheck();
+    streamActiveRef.current = true;
+    setIsCancelling(false);
+
+    // AbortController for cancel + 3-minute timeout
+    const controller = new AbortController();
+    abortControllerRef.current = controller;
+    const timeoutId = setTimeout(() => {
+      controller.abort();
+    }, 3 * 60 * 1000); // 3 minutes
 
     const formData = new FormData();
     formData.append("input_type", activeTab);
@@ -237,10 +295,13 @@ export default function CheckInput({
       formData.append("file", selectedFile);
     }
 
+    let completedSuccessfully = false;
+
     try {
       const response = await fetch(`${API_BASE}/api/check/stream`, {
         method: "POST",
         body: formData,
+        signal: controller.signal,
       });
 
       if (!response.ok) {
@@ -250,7 +311,7 @@ export default function CheckInput({
 
       const reader = response.body?.getReader();
       const decoder = new TextDecoder("utf-8");
-      if (!reader) throw new Error("No response body");
+      if (!reader) throw new Error("No response body from server.");
 
       let buffer = "";
       while (true) {
@@ -258,38 +319,75 @@ export default function CheckInput({
         if (done) break;
 
         buffer += decoder.decode(value, { stream: true });
-        const lines = buffer.split("\n\n");
-        buffer = lines.pop() || "";
 
-        for (const line of lines) {
-          if (line.startsWith("data: ")) {
-            const jsonStr = line.slice(6).trim();
-            try {
-              const eventData = JSON.parse(jsonStr);
-              if (eventData.error) {
-                setInlineError(eventData.error);
-                onError(eventData.error);
-                return;
-              }
-              if (eventData.progress !== undefined) {
-                onProgress(eventData.stage, eventData.message, eventData.progress);
-              }
-              if (eventData.stage === "complete" && eventData.data) {
-                onComplete(eventData.data);
-                return;
-              }
-            } catch (pErr) {
-              // ignore partial json
+        // FIX: Handle both \r\n\r\n (SSE spec) and \n\n (common)
+        const normalised = buffer.replace(/\r\n/g, "\n");
+        const events = normalised.split("\n\n");
+        buffer = events.pop() || "";
+
+        for (const event of events) {
+          // FIX: Skip SSE keep-alive ping comments (": ping")
+          if (event.trim().startsWith(":")) continue;
+
+          // Handle multi-line data fields
+          const dataLines = event
+            .split("\n")
+            .filter((l) => l.startsWith("data: "))
+            .map((l) => l.slice(6));
+          const jsonStr = dataLines.join("").trim();
+          if (!jsonStr) continue;
+
+          try {
+            const eventData = JSON.parse(jsonStr);
+            if (eventData.stage === "error" || eventData.error) {
+              const errMsg = eventData.error || "An error occurred during fact-checking.";
+              setInlineError(errMsg);
+              onError(errMsg);
+              completedSuccessfully = true; // error is a terminal state
+              clearTimeout(timeoutId);
+              reader.cancel();
+              return;
             }
+            if (eventData.progress !== undefined) {
+              onProgress(eventData.stage, eventData.message, eventData.progress);
+            }
+            if (eventData.stage === "complete" && eventData.data) {
+              onComplete(eventData.data);
+              completedSuccessfully = true;
+              clearTimeout(timeoutId);
+              reader.cancel();
+              return;
+            }
+          } catch {
+            // Ignore partial/malformed JSON chunks
           }
         }
       }
+
+      // FIX: Stream ended without a 'complete' event — spinner would hang forever without this
+      if (!completedSuccessfully) {
+        const msg = "The check ended unexpectedly. Please try again.";
+        setInlineError(msg);
+        onError(msg);
+      }
     } catch (err: any) {
-      const msg = err.message || "Failed to process request. Please try again.";
-      setInlineError(msg);
-      onError(msg);
+      clearTimeout(timeoutId);
+      if (err.name === "AbortError") {
+        const msg = "Check cancelled or timed out.";
+        setInlineError(msg);
+        onError(msg);
+      } else {
+        const msg = err.message || "Failed to process request. Please try again.";
+        setInlineError(msg);
+        onError(msg);
+      }
+    } finally {
+      clearTimeout(timeoutId);
+      streamActiveRef.current = false;
+      abortControllerRef.current = null;
     }
   };
+
 
   const tabs: { id: TabType; label: string; icon: LucideIcon }[] = [
     { id: "text", label: strings.tabText, icon: FileText },
@@ -312,8 +410,7 @@ export default function CheckInput({
               role="tab"
               aria-selected={isActive}
               onClick={() => {
-                setActiveTab(tab.id);
-                setInlineError(null);
+                handleTabChange(tab.id);
               }}
               disabled={isLoading}
               className={`flex items-center gap-2 px-3 sm:px-4 py-2.5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap min-h-[44px] ${
@@ -539,11 +636,19 @@ export default function CheckInput({
           </p>
 
           <div className="flex items-center gap-2 ml-auto">
-            {(textInput || urlInput || selectedFile) && (
+            {isLoading && (
+              <button
+                type="button"
+                onClick={cancelStream}
+                className="px-4 py-2 text-sm text-rose-600 hover:text-rose-700 hover:bg-rose-50 border border-rose-200 rounded-full min-h-[44px] transition-colors"
+              >
+                Cancel
+              </button>
+            )}
+            {!isLoading && (textInput || urlInput || selectedFile) && (
               <button
                 type="button"
                 onClick={clearForm}
-                disabled={isLoading}
                 className="px-4 py-2 text-sm text-wa-text-muted hover:text-wa-text rounded-full min-h-[44px]"
               >
                 {strings.clear}
@@ -554,6 +659,9 @@ export default function CheckInput({
               disabled={isLoading}
               className="px-6 py-2.5 bg-wa-accent text-white rounded-full text-sm font-medium hover:bg-wa-accent-hover transition-colors focus:ring-2 focus:ring-offset-2 focus:ring-wa-accent disabled:opacity-50 min-h-[44px] flex items-center gap-2 shadow-sm"
             >
+              {isLoading && (
+                <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+              )}
               <span>{isLoading ? strings.checking : strings.checkButton}</span>
             </button>
           </div>
