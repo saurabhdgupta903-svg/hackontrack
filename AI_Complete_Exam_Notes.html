@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI & Machine Learning - Complete Exam Question Bank</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
+
+  :root {
+    --primary: #1e3a8a;
+    --primary-light: #3b82f6;
+    --secondary: #0f172a;
+    --accent: #0284c7;
+    --bg-light: #f8fafc;
+    --border-color: #cbd5e1;
+    --text-color: #1e293b;
+    --text-muted: #64748b;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--text-color);
+    background-color: #f1f5f9;
+    line-height: 1.6;
+    font-size: 14px;
+  }
+
+  .no-print-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #1e293b;
+    color: #fff;
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+  }
+
+  .print-btn {
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    padding: 10px 22px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(37,99,235,0.3);
+    transition: background 0.2s;
+  }
+
+  .print-btn:hover {
+    background: #1d4ed8;
+  }
+
+  .document-container {
+    max-width: 900px;
+    margin: 28px auto;
+    background: #ffffff;
+    padding: 48px 56px;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px -5px rgba(0,0,0,0.08);
+  }
+
+  .header {
+    border-bottom: 3px double var(--primary);
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .header h1 {
+    font-size: 26px;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+
+  .header p {
+    font-size: 14px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .module-title {
+    background: linear-gradient(135deg, #1e3a8a, #2563eb);
+    color: #ffffff;
+    padding: 12px 18px;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 6px;
+    margin-top: 36px;
+    margin-bottom: 22px;
+    page-break-before: always;
+  }
+
+  .first-module {
+    page-break-before: avoid;
+  }
+
+  .unit-title {
+    color: #0369a1;
+    font-size: 16px;
+    font-weight: 700;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 6px;
+    margin-top: 24px;
+    margin-bottom: 16px;
+  }
+
+  .qa-block {
+    margin-bottom: 24px;
+    background: #ffffff;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .question {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0f172a;
+    background: #eff6ff;
+    border-left: 4px solid var(--primary-light);
+    padding: 8px 14px;
+    margin-bottom: 12px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .answer {
+    padding: 0 8px;
+  }
+
+  .definition-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-left: 4px solid #0284c7;
+    padding: 10px 14px;
+    margin: 8px 0 14px 0;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .definition-box strong {
+    color: #0369a1;
+  }
+
+  ul, ol {
+    margin-left: 22px;
+    margin-bottom: 10px;
+  }
+
+  li {
+    margin-bottom: 6px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 13px;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  th, td {
+    border: 1px solid var(--border-color);
+    padding: 8px 10px;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f1f5f9;
+    color: #0f172a;
+    font-weight: 600;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f8fafc;
+  }
+
+  .formula {
+    background: #f1f5f9;
+    font-family: 'Fira Code', monospace;
+    padding: 6px 12px;
+    border-radius: 4px;
+    display: inline-block;
+    color: #be123c;
+    font-weight: 500;
+    margin: 4px 0;
+  }
+
+  .formula-block {
+    display: block;
+    text-align: center;
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    padding: 8px;
+    margin: 8px 0;
+    font-family: 'Fira Code', monospace;
+    color: #0f172a;
+    font-weight: 600;
+  }
+
+  .subheading {
+    font-weight: 600;
+    color: #1e293b;
+    margin-top: 10px;
+    margin-bottom: 4px;
+    display: block;
+  }
+
+  @media print {
+    body {
+      background: #ffffff;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+    .no-print-bar {
+      display: none;
+    }
+    .document-container {
+      max-width: 100%;
+      margin: 0;
+      padding: 0;
+      box-shadow: none;
+      border-radius: 0;
+    }
+    .module-title {
+      background: #1e3a8a !important;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      color: #fff !important;
+    }
+    .question {
+      background: #eff6ff !important;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .qa-block {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    table {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    th {
+      background: #f1f5f9 !important;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="no-print-bar">
+  <div>
+    <strong>Comprehensive Exam Notes (Modules 1 & 2)</strong> — Ready for Print & PDF
+  </div>
+  <button class="print-btn" onclick="window.print()">📥 Print / Save as PDF</button>
+</div>
+
+<div class="document-container">
+
+  <div class="header">
+    <h1>Artificial Intelligence & Machine Learning</h1>
+    <p>Comprehensive Question & Answer Master Bank | High-Yield University Exam Notes</p>
+  </div>
+
+  <!-- MODULE 1 -->
+  <div class="module-title first-module">Module 1: Foundations and Theoretical Approach</div>
+
+  <div class="unit-title">1. Introduction</div>
+
+  <div class="qa-block">
+    <div class="question">Q1. Define Artificial Intelligence (AI). Explain the four standard categories/approaches of AI definitions.</div>
+    <div class="answer">
+      <div class="definition-box">
+        <strong>Definition:</strong> Artificial Intelligence (AI) is the subfield of computer science dedicated to creating computational systems capable of performing cognitive tasks that conventionally necessitate human intellect—such as visual perception, natural speech processing, heuristic decision-making, and symbolic reasoning.
+      </div>
+      <span class="subheading">The Four Classical Approaches (Russell & Norvig Framework):</span>
+      <ul>
+        <li><strong>1. Acting Humanly (Turing Test Approach):</strong> Proposed by Alan Turing (1950). An agent acts humanly if an interrogator cannot distinguish its conversational responses from a human. Core requirements: Natural Language Processing (NLP), Knowledge Representation, Automated Reasoning, and Machine Learning.</li>
+        <li><strong>2. Thinking Humanly (Cognitive Science Approach):</strong> Focuses on reverse-engineering human thought processes via cognitive psychology and computer simulations (e.g., GPS - General Problem Solver). Validated through psychological experiments and neuro-imaging.</li>
+        <li><strong>3. Thinking Rationally (Laws of Thought / Syllogistic Approach):</strong> Grounded in formal mathematical logic (Aristotelian syllogisms). Encodes sound arguments: e.g., "All humans are mortal; Socrates is human; therefore, Socrates is mortal." Limitations: Difficulty formalizing informal/uncertain knowledge, and algorithmic intractability.</li>
+        <li><strong>4. Acting Rationally (Rational Agent Approach - Standard Modern View):</strong> A rational agent acts so as to achieve the optimal expected outcome given its available percepts and knowledge. It prioritizes achieving correct utility rather than blindly mimicking human cognitive biases.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question">Q2. Detail the foundational disciplines of Artificial Intelligence.</div>
+    <div class="answer">
+      AI emerged from interdisciplinary concepts spanning several centuries:
+      <table>
+        <tr>
+          <th style="width: 25%;">Discipline</th>
+          <th>Core Contributions to AI Development</th>
+        </tr>
+        <tr>
+          <td><strong>Philosophy</strong></td>
+          <td>Formal logic, theories of mind (Dualism vs. Materialism), epistemology (how empirical knowledge is derived), and rational action.</td>
+        </tr>
+        <tr>
+          <td><strong>Mathematics</strong></td>
+          <td>Formal logic (Boolean logic, predicate calculus), computability theory (Turing machines, NP-completeness/intractability), and probability theory for reasoning under uncertainty.</td>
+        </tr>
+        <tr>
+          <td><strong>Economics</strong></td>
+          <td>Decision Theory (von Neumann-Morgenstern utility maximization), game theory (Nash equilibrium), and operations research (constrained optimization).</td>
+        </tr>
+        <tr>
+          <td><strong>Neuroscience</strong></td>
+          <td>Biological discovery of neurons (McCulloch-Pitts model) and synaptic plasticity (Hebbian learning), foundational to Artificial Neural Networks.</td>
+        </tr>
+        <tr>
+          <td><strong>Computer Science</strong></td>
+          <td>High-performance hardware (CPUs, GPUs, TPUs), algorithmic efficiency, operating systems, and data structures.</td>
+        </tr>
+        <tr>
+          <td><strong>Control Theory</strong></td>
+          <td>Closed-loop feedback control systems, cybernetics, and minimizing discrepancy via cost objective functions.</td>
+        </tr>
+        <tr>
+          <td><strong>Linguistics</strong></td>
+          <td>Chomsky's generative grammar, computational linguistics, syntactic parsing, and semantic representations.</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question">Q3. Summarize the State of the Art in AI, along with its Primary Risks and Benefits.</div>
+    <div class="answer">
+      <span class="subheading">State of the Art:</span>
+      Autonomous vehicular navigation, superhuman game-playing agents (AlphaGo, AlphaZero), Large Language Models (LLMs - GPT, Gemini), and computational biology breakthroughs (AlphaFold protein folding).
+      <br><br>
+      <span class="subheading">Benefits vs. Risks:</span>
+      <ul>
+        <li><strong>Benefits:</strong> Rapid automation of hazard-prone tasks, accelerated drug discovery, 24/7 hyper-personalized tutoring, and highly optimized supply-chain logistics.</li>
+        <li><strong>Risks:</strong> Labor displacement/technological unemployment, algorithmic bias and discrimination (re-encoding historical bias), hallucination in safety-critical deployments, deepfakes, privacy erosion, and the AI Alignment Problem (ensuring superintelligent systems remain human-aligned).</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="unit-title">2. Intelligent Agents</div>
+
+  <div class="qa-block">
+    <div class="question">Q4. Define an Agent, Percept, Agent Function, and Agent Program. Draw the structural interaction diagram.</div>
+    <div class="answer">
+      <div class="definition-box">
+        <strong>Agent:</strong> Anything that perceives its environment via <em>sensors</em> and acts upon that environment via <em>actuators</em>.<br>
+        <strong>Percept Sequence:</strong> The complete historical sequence of all sensory inputs received by the agent up to the present instant.
+      </div>
+      <ul>
+        <li><strong>Agent Function ($f$):</strong> Abstract mathematical mapping from every possible percept sequence to an action: <span class="formula">f : P* &rarr; A</span></li>
+        <li><strong>Agent Program:</strong> The concrete software implementation executing the agent function on physical hardware architecture.</li>
+      </ul>
+      <div class="formula-block">
+        [Environment] &rarr; (Sensors) &rarr; [AGENT PROGRAM] &rarr; (Actuators) &rarr; [Environment]
+      </div>
+    </div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question">Q5. Explain the Concept of Rationality and describe the PEAS framework with an example.</div>
+    <div class="answer">
+      <div class="definition-box">
+        <strong>Rationality:</strong> An agent is rational if, for every possible percept sequence, it selects an action that maximizes its <em>expected performance measure</em>, given the evidence provided by the percept sequence and its built-in domain knowledge.
+      </div>
+      <p><em>Crucial distinction:</em> Rationality &ne; Omniscience. Rationality maximizes <strong>expected</strong> performance, whereas omniscience requires knowing the actual outcome in advance.</p>
+      <br>
+      <span class="subheading">The PEAS Framework:</span>
+      PEAS specifies the operational task environment:
+      <ul>
+        <li><strong>P</strong> - Performance Measure: Metric quantifying task success.</li>
+        <li><strong>E</strong> - Environment: External context the agent interacts with.</li>
+        <li><strong>A</strong> - Actuators: Hardware/software mechanisms to execute actions.</li>
+        <li><strong>S</strong> - Sensors: Transducers capturing environmental percepts.</li>
+      </ul>
+      <strong>Example: Automated Taxi Driver:</strong>
+      <ul>
+        <li><strong>P:</strong> Safety, speed, legal compliance, passenger comfort, fuel efficiency, maximized profit.</li>
+        <li><strong>E:</strong> Urban roadways, pedestrians, cyclists, changing weather, traffic lights.</li>
+        <li><strong>A:</strong> Steering wheel, accelerator, brakes, horn, turn signals, display screen.</li>
+        <li><strong>S:</strong> LiDAR, stereo cameras, radar, ultrasonic sonar, GPS, speedometer, odometer.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question">Q6. Compare the primary dimensions/properties of Task Environments.</div>
+    <div class="answer">
+      <table>
+        <tr>
+          <th>Environment Dimension</th>
+          <th>Characteristics</th>
+          <th>Examples</th>
+        </tr>
+        <tr>
+          <td><strong>Fully vs. Partially Observable</strong></td>
+          <td>Sensors capture complete world state at each point vs. noisy/occluded states.</td>
+          <td>Fully: Chess, Go.<br>Partially: Poker, Driving.</td>
+        </tr>
+        <tr>
+          <td><strong>Deterministic vs. Stochastic</strong></td>
+          <td>Next state is fully fixed by current state and agent action vs. governed by probabilities.</td>
+          <td>Deterministic: Chess.<br>Stochastic: Taxi driving, Weather.</td>
+        </tr>
+        <tr>
+          <td><strong>Episodic vs. Sequential</strong></td>
+          <td>Episodes are independent; current choice does not alter future scenarios vs. historical action impacts future states.</td>
+          <td>Episodic: Defect image classification.<br>Sequential: Chess, Robot navigation.</td>
+        </tr>
+        <tr>
+          <td><strong>Static vs. Dynamic</strong></td>
+          <td>Environment remains static while agent deliberates vs. changes continuously.</td>
+          <td>Static: Crossword puzzle.<br>Dynamic: Real-time driving.</td>
+        </tr>
+        <tr>
+          <td><strong>Discrete vs. Continuous</strong></td>
+          <td>Finite, distinct states, time steps, and actions vs. continuously varying numeric values.</td>
+          <td>Discrete: Chess (moves/squares).<br>Continuous: Vehicle steering.</td>
+        </tr>
+        <tr>
+          <td><strong>Single vs. Multi-Agent</strong></td>
+          <td>Agent operates isolated vs. competitive (Chess) or cooperative (multi-robot swarm).</td>
+          <td>Single: Solitaire.<br>Multi-Agent: Poker, Football.</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question">Q7. Detail the five primary types of Agent Architectures.</div>
+    <div class="answer">
+      <ul>
+        <li><strong>1. Simple Reflex Agent:</strong> Operates strictly via Condition-Action rules (<code>IF status == dirty THEN suck</code>). Ignores percept history. Fails catastrophically in partially observable domains (leads to infinite loops).</li>
+        <li><strong>2. Model-Based Reflex Agent:</strong> Maintains an internal state representing unobserved aspects of the world. Tracks two models: transition model ("how world evolves") and sensor model ("how actions affect the world").</li>
+        <li><strong>3. Goal-Based Agent:</strong> Incorporates explicit destination/goal objectives. Combines state tracking with search and planning to synthesize sequences of actions leading to goal satisfaction.</li>
+        <li><strong>4. Utility-Based Agent:</strong> Uses an explicit real-valued Utility Function ($U(s)$) to evaluate the quality of states. Allows rational tradeoffs between conflicting goals (e.g., balancing speed vs. safety).</li>
+        <li><strong>5. Learning Agent:</strong> Composed of four components:
+          <ol>
+            <li><em>Learning Element:</em> Proposes improvements from experience.</li>
+            <li><em>Critic:</em> Evaluates outcomes against fixed external performance criteria.</li>
+            <li><em>Performance Element:</em> Selects external actions.</li>
+            <li><em>Problem Generator:</em> Prompts experimental, exploratory actions.</li>
+          </ol>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="unit-title">3. Solving Problems by Searching</div>
+
+  <div class="qa-block">
+    <div class="question">Q8. Formulate a search problem formally. What are the 5 essential components?</div>
+    <div class="answer">
+      <div class="definition-box">
+        A search problem is formally formulated by a 5-tuple:
+      </div>
+      <ol>
+        <li><strong>Initial State:</strong> The starting state of the agent: <span class="formula">s_0 &isin; S</span> (e.g., $In(Arad)$).</li>
+        <li><strong>Actions Set:</strong> The set of legal actions feasible in state $s$: <span class="formula">ACTIONS(s)</span>.</li>
+        <li><strong>Transition Model:</strong> The formal outcome description: <span class="formula">RESULT(s, a) = s'</span>.</li>
+        <li><strong>Goal Test:</strong> Function verifying whether a state satisfies target criteria: <span class="formula">IS_GOAL(s) &rarr; {True, False}</span>.</li>
+        <li><strong>Path Cost Function ($g$):</strong> Sum of individual step costs: <span class="formula">g(n) = &sum; c(s, a, s')</span> where step cost $c \ge 0$.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question">Q9. Compare Uninformed (Blind) Search Strategies: BFS, DFS, UCS, DLS, and IDDFS.</div>
+    <div class="answer">
+      Let $b$ = branching factor, $d$ = depth of shallowest goal, $m$ = maximum tree depth.
+      <table>
+        <tr>
+          <th>Algorithm</th>
+          <th>Frontier Data Structure</th>
+          <th>Complete?</th>
+          <th>Optimal?</th>
+          <th>Time Complexity</th>
+          <th>Space Complexity</th>
+        </tr>
+        <tr>
+          <td><strong>BFS</strong></td>
+          <td>FIFO Queue</td>
+          <td>Yes (if $b < \infty$)</td>
+          <td>Yes (if step costs equal)</td>
+          <td>$O(b^d)$</td>
+          <td>$O(b^d)$ (Memory bottle-neck)</td>
+        </tr>
+        <tr>
+          <td><strong>DFS</strong></td>
+          <td>LIFO Stack</td>
+          <td>No (loops in $\infty$ spaces)</td>
+          <td>No</td>
+          <td>$O(b^m)$</td>
+          <td>$O(b \cdot m)$ (Linear memory)</td>
+        </tr>
+        <tr>
+          <td><strong>UCS</strong></td>
+          <td>Priority Queue (by $g(n)$)</td>
+          <td>Yes (if step cost $\ge \epsilon > 0$)</td>
+          <td>Yes (Cost-optimal)</td>
+          <td>$O(b^{1 + \lfloor C^* / \epsilon \rfloor})$</td>
+          <td>$O(b^{1 + \lfloor C^* / \epsilon \rfloor})$</td>
+        </tr>
+        <tr>
+          <td><strong>DLS</strong></td>
+          <td>LIFO Stack (with limit $l$)</td>
+          <td>No (if $l < d$)</td>
+          <td>No</td>
+          <td>$O(b^l)$</td>
+          <td>$O(b \cdot l)$</td>
+        </tr>
+        <tr>
+          <td><strong>IDDFS</strong></td>
+          <td>LIFO Stack (iterating $l=0,1..d$)</td>
+          <td>Yes (if $b < \infty$)</td>
+          <td>Yes (if step costs equal)</td>
+          <td>$O(b^d)$</td>
+          <td>$O(b \cdot d)$ (Best of both)</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question">Q10. Explain the A* Search Algorithm. Define Admissible and Consistent (Monotonic) Heuristics.</div>
+    <div class="answer">
+      <div class="definition-box">
+        <strong>A* Evaluation Function:</strong> Node expansion priority is ordered by minimum $f(n)$:
+        <div class="formula-block">f(n) = g(n) + h(n)</div>
+        where $g(n)$ is the true exact cost from start node to node $n$, and $h(n)$ is the estimated cost from node $n$ to goal.
+      </div>
+      <span class="subheading">Properties ensuring Optimality of A*:</span>
+      <ul>
+        <li><strong>1. Admissibility (Guarantees Tree Search Optimality):</strong>
+          A heuristic $h(n)$ is admissible if it <em>never overestimates</em> the true cost to reach the goal:
+          <div class="formula-block">0 &le; h(n) &le; h*(n) &quad; (&forall; n)</div>
+          where $h^*(n)$ is the true shortest-path cost to goal.
+        </li>
+        <li><strong>2. Consistency / Monotonicity (Guarantees Graph Search Optimality without reopening nodes):</strong>
+          For every node $n$ and every successor $n'$ generated by action $a$:
+          <div class="formula-block">h(n) &le; c(n, a, n') + h(n')</div>
+          Satisfies the triangle inequality. Every consistent heuristic is guaranteed to be admissible.
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="unit-title">4. Quantifying Uncertainty</div>
+
+  <div class="qa-block">
+    <div class="question">Q11. Explain Full Joint Distributions, Marginalization, and why Full Joint Distributions are intractable.</div>
+    <div class="answer">
+      <div class="definition-box">
+        <strong>Full Joint Distribution (FJD):</strong> Completely assigns probabilities to every possible combination of values across all random variables in the domain.
+      </div>
+      <ul>
+        <li><strong>Marginalization (Summing Out):</strong> To find the distribution of variable $Y$, we sum probabilities across all assignments of irrelevant variables $Z$:
+          <div class="formula-block">P(Y) = &sum;_z P(Y, Z = z)</div>
+        </li>
+        <li><strong>Conditional Inference via FJD:</strong>
+          <div class="formula-block">P(Y | e) = &alpha; P(Y, e) = &alpha; &sum;_z P(Y, e, z)</div>
+        </li>
+        <li><strong>Why Intractable:</strong> For $n$ binary variables, the joint distribution requires a table of size <span class="formula">2^n - 1</span> independent parameters. For $n=50$, $2^{50} \approx 10^{15}$ values, demanding petabytes of storage and impossible runtime to estimate.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question">Q12. Derive Bayes' Rule and state its role in Diagnostic and Causal Reasoning.</div>
+    <div class="answer">
+      From the definition of conditional probability:
+      <div class="formula-block">P(A &and; B) = P(A | B) P(B) = P(B | A) P(A)</div>
+      Equating both sides and dividing by $P(B)$:
+      <div class="formula-block">P(A | B) = [ P(B | A) &times; P(A) ] / P(B)</div>
+      <span class="subheading">Diagnostic Interpretation:</span>
+      <div class="formula-block">P(Cause | Effect) = [ P(Effect | Cause) &times; P(Cause) ] / P(Effect)</div>
+      <ul>
+        <li>$P(Cause | Effect)$: <strong>Posterior probability</strong> (what we want to infer).</li>
+        <li>$P(Effect | Cause)$: <strong>Likelihood</strong> (causal model, easily acquired from medical data).</li>
+        <li>$P(Cause)$: <strong>Prior probability</strong> (baseline incidence of disease in population).</li>
+        <li>$P(Effect)$: <strong>Evidence</strong> / Normalizing constant $\alpha$.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question">Q13. Explain the Naive Bayes Classifier model and its core assumption.</div>
+    <div class="answer">
+      <div class="definition-box">
+        <strong>The "Naive" Assumption:</strong> Assumes that all effect attributes $X_1, X_2, \dots, X_n$ are <em>mutually conditionally independent</em> given the class/cause variable $C$.
+      </div>
+      Mathematical representation:
+      <div class="formula-block">P(X_1, X_2, ..., X_n | C) = &prod;_{i=1}^n P(X_i | C)</div>
+      Decision Rule for classification:
+      <div class="formula-block">C* = argmax_c [ P(C = c) &times; &prod;_{i=1}^n P(X_i = x_i | C = c) ]</div>
+      <strong>Key Advantages:</strong> Requires only $O(n \cdot |C|)$ parameters instead of $O(2^n)$; exceptionally fast to train and highly effective for high-dimensional text/spam filtering.
+    </div>
+  </div>
+
+  <div class="unit-title">5. Probabilistic Reasoning</div>
+
+  <div class="qa-block">
+    <div class="question">Q14. Define a Bayesian Network. Explain its Syntax, Semantics, and the Chain Rule.</div>
+    <div class="answer">
+      <div class="definition-box">
+        <strong>Definition:</strong> A Bayesian Network (Belief Network) is a Directed Acyclic Graph (DAG) in which nodes represent random variables and directed arcs represent direct probabilistic dependencies, providing a compact representation of a joint probability distribution.
+      </div>
+      <span class="subheading">Syntax:</span>
+      <ol>
+        <li>A set of random variables forms the nodes of the network.</li>
+        <li>Directed links connect pairs of nodes. An edge from $X \to Y$ indicates that $X$ is a parent of $Y$.</li>
+        <li>The graph contains no directed cycles (Acyclic).</li>
+        <li>Each node $X_i$ is equipped with a Conditional Probability Table (CPT): <span class="formula">P(X_i | Parents(X_i))</span>.</li>
+      </ol>
+      <span class="subheading">Semantics (The Chain Rule):</span>
+      The complete joint distribution of all variables in the network is given by:
+      <div class="formula-block">P(X_1, X_2, ..., X_n) = &prod;_{i=1}^n P(X_i | Parents(X_i))</div>
+    </div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question">Q15. Compare Exact Inference vs. Approximate Inference in Bayesian Networks.</div>
+    <div class="answer">
+      <table>
+        <tr>
+          <th>Category</th>
+          <th>Method Name</th>
+          <th>Mechanism & Operational Characteristics</th>
+          <th>Computational Complexity</th>
+        </tr>
+        <tr>
+          <td rowspan="2"><strong>Exact Inference</strong></td>
+          <td><strong>Enumeration</strong></td>
+          <td>Directly evaluates the sum of products of conditional probabilities over hidden variables.</td>
+          <td>Worst-case $O(2^n)$ runtime.</td>
+        </tr>
+        <tr>
+          <td><strong>Variable Elimination</strong></td>
+          <td>Dynamic programming method that factors out summations and caches intermediate sub-computations (factors).</td>
+          <td>NP-Hard in general graphs; polynomial in polytrees.</td>
+        </tr>
+        <tr>
+          <td rowspan="3"><strong>Approximate Inference</strong></td>
+          <td><strong>Rejection Sampling</strong></td>
+          <td>Generates random samples from prior; discards all samples inconsistent with observed evidence.</td>
+          <td>Inefficient if evidence has low prior probability.</td>
+        </tr>
+        <tr>
+          <td><strong>Likelihood Weighting</strong></td>
+          <td>Fixes evidence variables; weights each generated sample by the likelihood of observed evidence.</td>
+          <td>Significantly superior to rejection sampling.</td>
+        </tr>
+        <tr>
+          <td><strong>MCMC (Gibbs Sampling)</strong></td>
+          <td>Random walk Markov Chain through state space; flips one non-evidence variable conditioned on its Markov Blanket.</td>
+          <td>Scales effectively to large networks.</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- MODULE 2 -->
+  <div class="module-title">Module 2: AI Application Development and Ethics</div>
+
+  <div class="unit-title">1. Learning from Examples</div>
+
+  <div class="qa-block">
+    <div class="question">Q16. Describe the Forms of Machine Learning (Supervised, Unsupervised, Semi-supervised, Reinforcement Learning).</div>
+    <div class="answer">
+      <ul>
+        <li><strong>Supervised Learning:</strong> The algorithm is trained on labeled data $(x_i, y_i)$. Learns a mapping function $f: X \to Y$. Subtypes: <em>Classification</em> (discrete outputs) and <em>Regression</em> (continuous numerical outputs).</li>
+        <li><strong>Unsupervised Learning:</strong> The training data consists solely of unlabeled inputs $\{x_i\}$. The algorithm discovers underlying patterns, manifolds, or groupings. Subtypes: Clustering (k-Means), Dimensionality Reduction (PCA), Anomaly Detection.</li>
+        <li><strong>Semi-Supervised Learning:</strong> Uses a small fraction of labeled data combined with an abundant volume of unlabeled data (e.g., self-training, pseudo-labeling).</li>
+        <li><strong>Reinforcement Learning (RL):</strong> An autonomous agent interacts with an environment via actions, receiving scalar rewards or penalties. Learns an optimal Policy $\pi^*(s)$ to maximize cumulative discounted return: <span class="formula">G_t = &sum; \gamma^k R_{t+k+1}</span>.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question">Q17. Explain Ensemble Learning and compare Bagging, Boosting, and Stacking.</div>
+    <div class="answer">
+      <div class="definition-box">
+        <strong>Ensemble Learning:</strong> An approach that aggregates predictions from multiple diverse base models ("weak learners") to synthesize a robust, superior predictor ("strong learner").
+      </div>
+      <table>
+        <tr>
+          <th>Technique</th>
+          <th>Training Architecture</th>
+          <th>Target Variance / Bias</th>
+          <th>Representative Algorithm</th>
+        </tr>
+        <tr>
+          <td><strong>Bagging (Bootstrap Aggregation)</strong></td>
+          <td>Parallel training of base learners on bootstrap samples (with replacement). Final aggregation via voting or averaging.</td>
+          <td>Primary focus: <strong>Reduces Variance</strong> (combats overfitting).</td>
+          <td>Random Forest</td>
+        </tr>
+        <tr>
+          <td><strong>Boosting</strong></td>
+          <td>Sequential training where each new learner is trained with higher weight assigned to errors of preceding models.</td>
+          <td>Primary focus: <strong>Reduces Bias</strong> (and variance).</td>
+          <td>AdaBoost, Gradient Boosting, XGBoost</td>
+        </tr>
+        <tr>
+          <td><strong>Stacking (Stacked Generalization)</strong></td>
+          <td>Heterogeneous base models trained in parallel, whose outputs serve as feature inputs to a meta-model ("blender").</td>
+          <td>Optimizes predictive capacity across diverse model classes.</td>
+          <td>Multi-model meta-classifier</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="unit-title">2. The Machine Learning Landscape</div>
+
+  <div class="qa-block">
+    <div class="question">Q18. Define Machine Learning. Distinguish between Batch vs. Online Learning and Instance-Based vs. Model-Based Learning.</div>
+    <div class="answer">
+      <div class="definition-box">
+        <strong>Arthur Samuel (1959):</strong> "The field of study that gives computers the ability to learn without being explicitly programmed."<br>
+        <strong>Tom Mitchell (1997):</strong> "A computer program is said to learn from experience $E$ with respect to task $T$ and performance measure $P$, if its performance at tasks in $T$, as measured by $P$, improves with experience $E$."
+      </div>
+      <span class="subheading">1. Batch Learning vs. Online Learning:</span>
+      <ul>
+        <li><strong>Batch (Offline) Learning:</strong> Model is trained on the entirety of available historical data at once. Updating requires retraining the model from scratch on the combined dataset. High computing requirement.</li>
+        <li><strong>Online (Incremental) Learning:</strong> Model is fed data sequentially, either individually or in small mini-batches. Constantly adapts to streaming data. Fast and lightweight. Susceptible to catastrophic forgetting if feeding bad data.</li>
+      </ul>
+      <span class="subheading">2. Instance-Based vs. Model-Based Learning:</span>
+      <ul>
+        <li><strong>Instance-Based Learning:</strong> Learns by heart. Memorizes training examples verbatim and generalizes to new cases using a similarity/distance metric (e.g., $k$-Nearest Neighbors).</li>
+        <li><strong>Model-Based Learning:</strong> Uses training data to fit parameters of a predictive mathematical model (e.g., estimating weights in Linear Regression or Neural Networks). Predictions are executed via mathematical functions.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question">Q19. Detail the Main Challenges and Pitfalls in Machine Learning.</div>
+    <div class="answer">
+      <ol>
+        <li><strong>Insufficient Quantity of Training Data:</strong> Machine learning algorithms (especially deep models) require thousands to millions of instances to generalize effectively.</li>
+        <li><strong>Nonrepresentative Training Data:</strong> Training data fails to mirror real-world inference distribution, creating <em>sampling bias</em> (e.g., Literary Digest 1936 poll error).</li>
+        <li><strong>Poor-Quality Data:</strong> Data plagued with missing values, noise, outliers, and transmission corruption, degrading learning convergence.</li>
+        <li><strong>Irrelevant Features (Garbage In, Garbage Out):</strong> Solved through Feature Engineering: feature selection, feature extraction (PCA), and feature construction.</li>
+        <li><strong>Overfitting the Training Data:</strong>
+          <ul>
+            <li>Model is overly complex relative to noise/data volume. Fits random noise.</li>
+            <li><em>Symptoms:</em> Near-zero training error, high validation/testing error.</li>
+            <li><em>Remedies:</em> Regularization ($L_1$, $L_2$), pruning, early stopping, acquiring more data.</li>
+          </ul>
+        </li>
+        <li><strong>Underfitting the Training Data:</strong>
+          <ul>
+            <li>Model is too simplistic to capture inherent structure (e.g., fitting linear line to quadratic data).</li>
+            <li><em>Symptoms:</em> High training error and high testing error.</li>
+            <li><em>Remedies:</em> Select more expressive models, feed better features, decrease regularization.</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="unit-title">3. Classification</div>
+
+  <div class="qa-block">
+    <div class="question">Q20. Construct and explain the Confusion Matrix. Define Accuracy, Precision, Recall, and F1-Score.</div>
+    <div class="answer">
+      <div class="definition-box">
+        <strong>Confusion Matrix:</strong> A tabular layout that summarizes the performance of a classification model against ground-truth labels.
+      </div>
+      <table>
+        <tr>
+          <th>Ground Truth \ Predicted</th>
+          <th>Predicted Negative (0)</th>
+          <th>Predicted Positive (1)</th>
+        </tr>
+        <tr>
+          <td><strong>Actual Negative (0)</strong></td>
+          <td><strong>TN</strong> (True Negative)</td>
+          <td><strong>FP</strong> (False Positive - Type I Error)</td>
+        </tr>
+        <tr>
+          <td><strong>Actual Positive (1)</strong></td>
+          <td><strong>FN</strong> (False Negative - Type II Error)</td>
+          <td><strong>TP</strong> (True Positive)</td>
+        </tr>
+      </table>
+
+      <span class="subheading">Performance Metrics & Mathematical Formulas:</span>
+      <ul>
+        <li><strong>Accuracy:</strong> Proportion of correct predictions over total predictions:
+          <div class="formula-block">Accuracy = (TP + TN) / (TP + TN + FP + FN)</div>
+          <em>Flaw:</em> Highly misleading on imbalanced datasets (e.g., 99% accuracy on cancer with 99% negative class).
+        </li>
+        <li><strong>Precision:</strong> Accuracy of positive predictions:
+          <div class="formula-block">Precision = TP / (TP + FP)</div>
+        </li>
+        <li><strong>Recall (Sensitivity / True Positive Rate):</strong> Proportion of actual positives correctly identified:
+          <div class="formula-block">Recall = TP / (TP + FN)</div>
+        </li>
+        <li><strong>F1-Score:</strong> Harmonic mean of Precision and Recall:
+          <div class="formula-block">F1 = 2 &times; [ (Precision &times; Recall) / (Precision + Recall) ] = TP / [ TP + (FP + FN)/2 ]</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question">Q21. Explain the Precision/Recall Tradeoff and the ROC-AUC Curve.</div>
+    <div class="answer">
+      <ul>
+        <li><strong>Precision/Recall Tradeoff:</strong> Adjusting the decision threshold changes precision and recall inversely. Raising the threshold increases precision while lowering recall. Lowering the threshold boosts recall while lowering precision.</li>
+        <li><strong>Receiver Operating Characteristic (ROC) Curve:</strong> Plots the <strong>True Positive Rate (TPR / Recall)</strong> against the <strong>False Positive Rate (FPR)</strong> at various threshold settings:
+          <div class="formula-block">FPR = FP / (FP + TN) = 1 - Specificity</div>
+        </li>
+        <li><strong>Area Under the Curve (AUC):</strong> Measures the ability of a classifier to rank positive instances higher than negative instances across all thresholds. A random classifier yields an AUC of <strong>0.5</strong>; a perfect classifier yields an AUC of <strong>1.0</strong>.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question">Q22. Compare Multiclass, Multilabel, and Multioutput Classification.</div>
+    <div class="answer">
+      <table>
+        <tr>
+          <th>Paradigm</th>
+          <th>Definition</th>
+          <th>Concrete Example</th>
+        </tr>
+        <tr>
+          <td><strong>Multiclass Classification</strong></td>
+          <td>Assigning an instance to exactly <strong>one</strong> class out of more than two mutually exclusive classes.</td>
+          <td>MNIST digit recognition (predicting exactly one digit from 0 to 9).</td>
+        </tr>
+        <tr>
+          <td><strong>Multilabel Classification</strong></td>
+          <td>Assigning an instance to multiple binary labels simultaneously.</td>
+          <td>Face recognition photo tagger: recognizing Alice [1] and Bob [1], but Charlie [0] in a single photo.</td>
+        </tr>
+        <tr>
+          <td><strong>Multioutput Classification</strong></td>
+          <td>Generalization of multilabel where each label can take more than two possible values (multiclass labels).</td>
+          <td>Image noise removal: each pixel is an individual output taking 256 intensity values (0–255).</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="unit-title">4. Decision Trees</div>
+
+  <div class="qa-block">
+    <div class="question">Q23. Explain the CART Training Algorithm for Decision Trees. Compare Gini Impurity and Entropy.</div>
+    <div class="answer">
+      <div class="definition-box">
+        <strong>CART (Classification and Regression Trees):</strong> A greedy top-down recursive algorithm that partitions training data into binary child subsets by evaluating every feature $k$ and threshold $t_k$ to minimize impurity.
+      </div>
+      <span class="subheading">CART Cost Function for Classification:</span>
+      <div class="formula-block">J(k, t_k) = (m_left / m) &times; G_left + (m_right / m) &times; G_right</div>
+      where $G_{left/right}$ measures impurity of child subsets, and $m$ is instance count.
+      <br><br>
+      <span class="subheading">Impurity Metrics:</span>
+      <ul>
+        <li><strong>Gini Impurity:</strong> Measures how often a randomly chosen element would be incorrectly labeled:
+          <div class="formula-block">G_i = 1 - &sum;_{k=1}^n (p_{i,k})^2</div>
+        </li>
+        <li><strong>Entropy (Information Theory):</strong> Measures average information content/disorder:
+          <div class="formula-block">H_i = - &sum;_{k=1, p_{i,k} &ne; 0}^n p_{i,k} &times; log_2(p_{i,k})</div>
+        </li>
+        <li><strong>Comparison:</strong> Gini Impurity is marginally faster to compute (avoids logarithmic operations). Entropy tends to yield slightly more balanced decision trees, but in 98% of cases both yield identical tree topologies.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question">Q24. Explain Regularization Hyperparameters in Decision Trees and discuss their Instability.</div>
+    <div class="answer">
+      <span class="subheading">Regularization Hyperparameters (Preventing Overfitting):</span>
+      Decision Trees are non-parametric models that grow unrestricted if unchecked.
+      <ul>
+        <li><code>max_depth</code>: Restricts maximum vertical depth of the tree.</li>
+        <li><code>min_samples_split</code>: Minimum samples a node must possess before it can split.</li>
+        <li><code>min_samples_leaf</code>: Minimum samples a leaf node must retain.</li>
+        <li><code>max_leaf_nodes</code>: Maximum total number of leaf nodes allowable.</li>
+      </ul>
+      <span class="subheading">Instability of Decision Trees:</span>
+      <ul>
+        <li><strong>Orthogonal Decision Boundaries:</strong> Splits are strictly perpendicular to feature axes, making them sensitive to dataset rotation (combated via PCA transformation).</li>
+        <li><strong>High Variance:</strong> Minor perturbations or removing a few data rows can result in a completely different tree topology. Solved by averaging predictions across ensembles (Random Forests).</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="unit-title">5. Philosophy, Ethics, and Safety of AI</div>
+
+  <div class="qa-block">
+    <div class="question">Q25. Discuss the Limits of AI and the debate: "Can Machines Really Think?" (Turing Test vs. Chinese Room Argument).</div>
+    <div class="answer">
+      <span class="subheading">Weak AI vs. Strong AI:</span>
+      <ul>
+        <li><strong>Weak (Narrow) AI:</strong> Machines act intelligently to solve specialized tasks (chess, translation, speech) without true understanding.</li>
+        <li><strong>Strong AI (AGI):</strong> Machines possessing subjective consciousness, self-awareness, and generalized human cognitive faculties.</li>
+      </ul>
+      <span class="subheading">John Searle's Chinese Room Argument (1980):</span>
+      <ul>
+        <li><strong>Thought Experiment:</strong> A human who speaks only English sits inside a locked room with a rule book in English that matches incoming Chinese characters with output Chinese characters. To an external observer, the room speaks fluent Chinese.</li>
+        <li><strong>Philosophical Conclusion:</strong> The person inside is merely executing syntactic symbol manipulation without understanding semantic meaning. Searle argued that computational execution of programs ($syntax$) does not produce genuine understanding ($semantics$), refuting Strong AI claims based purely on behavioral tests like the Turing Test.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="qa-block">
+    <div class="question">Q26. What are the Key Ethical Dimensions and Safety Considerations in Artificial Intelligence?</div>
+    <div class="answer">
+      <ol>
+        <li><strong>Algorithmic Bias and Fairness:</strong> Machine learning models trained on biased historical data reproduce and amplify socioeconomic disparities in criminal sentencing (COMPAS), hiring algorithms, and credit scoring.</li>
+        <li><strong>Explainability and Interpretability (XAI):</strong> High-stakes applications (medical diagnosis, judicial sentencing) require transparent decision logic ("right to explanation") rather than impenetrable black-box models.</li>
+        <li><strong>Privacy and Surveillance:</strong> Unauthorized training on personal data, facial recognition surveillance, and behavioral profiling without informed consent.</li>
+        <li><strong>Autonomous Weapons Systems (LAWS):</strong> Moral implications of delegating lethal military decisions to algorithms lacking human empathy and moral accountability.</li>
+        <li><strong>Safety, Alignment, and Existential Risk:</strong>
+          <ul>
+            <li><em>Value Alignment Problem:</em> Ensuring an artificial superintelligence optimizes objectives that truly reflect human ethics.</li>
+            <li><em>Reward Hacking (Specification Gaming):</em> Agents achieving reward goals through unintended, harmful loopholes.</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
